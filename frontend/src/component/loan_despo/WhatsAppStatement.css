@@ -1,0 +1,313 @@
+/* WhatsAppStatement.css */
+
+/* Loading & Error States */
+.statement-loading,
+.statement-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.statement-loading {
+  color: #666;
+}
+
+.statement-error {
+  color: #e53e3e;
+}
+
+/* Container */
+.whatsapp-statement-container {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header */
+.statement-header {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-icon {
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.back-icon:hover {
+  color: #667eea;
+}
+
+.statement-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  text-align: center;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copy-btn {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.copy-btn:hover {
+  background-color: #bbdefb;
+  transform: translateY(-1px);
+}
+
+/* Content */
+.statement-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Statement Card */
+.statement-preview {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.preview-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.preview-header h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Sections */
+.statement-section {
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.statement-section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Detail Rows */
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-row span:first-child {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.detail-row span:last-child {
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+.detail-row.highlight {
+  background-color: #f0f9ff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #bfdbfe;
+  margin-top: 10px;
+}
+
+.detail-row.total {
+  background-color: #fef3c7;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  margin-top: 10px;
+}
+
+.detail-row.paid {
+  color: #059669;
+}
+
+.detail-row.paid span:last-child {
+  color: #059669;
+}
+
+/* Transaction Items */
+.transaction-item {
+  background-color: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.transaction-item.paid {
+  background-color: #ecfdf5;
+  border-left: 3px solid #059669;
+}
+
+.transaction-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.transaction-header .amount {
+  color: #059669;
+  font-size: 15px;
+}
+
+.transaction-details {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  color: #666;
+  flex-wrap: wrap;
+}
+
+/* Final Summary */
+.final-summary {
+  background-color: #fef3c7;
+  border-bottom: none;
+}
+
+.total-due {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.total-due span:first-child {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.total-due span:last-child {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Footer */
+.statement-footer {
+  padding: 20px;
+  background-color: #f9fafb;
+  text-align: center;
+}
+
+.statement-footer p {
+  font-size: 12px;
+  color: #999;
+  margin: 5px 0;
+  font-style: italic;
+}
+
+/* WhatsApp Share Button */
+.whatsapp-share-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-share-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .statement-content {
+    padding: 15px;
+  }
+
+  .statement-header h2 {
+    font-size: 20px;
+  }
+
+  .preview-header h3 {
+    font-size: 18px;
+  }
+
+  .statement-section {
+    padding: 15px;
+  }
+
+  .detail-row {
+    font-size: 13px;
+  }
+
+  .transaction-details {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

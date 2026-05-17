@@ -1,0 +1,132 @@
+
+  
+  /* Skeleton Container */
+  .dashboard-skeleton {
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+  }
+  
+  /* Header Skeleton */
+  .skeleton-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #e0e0e0;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .skeleton-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #dcdcdc;
+  }
+  
+  .skeleton-text {
+    height: 12px;
+    background: #dcdcdc;
+    border-radius: 6px;
+  }
+  
+  .skeleton-text.small {
+    width: 60px;
+  }
+  
+  .skeleton-text.medium {
+    width: 100px;
+  }
+  
+  .skeleton-btn {
+    width: 80px;
+    height: 25px;
+    background: #dcdcdc;
+    border-radius: 6px;
+  }
+  
+  /* Card Skeleton */
+  .skeleton-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .skeleton-card {
+    width: 100%;
+    height: 100px;
+    min-height: 150px;
+    background: #e0e0e0;
+    border-radius: 10px;
+  }
+  
+  /* Buttons */
+  .skeleton-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .skeleton-btn.wide {
+    width: 70%;
+    height: 40px;
+  }
+  
+  .skeleton-btn.small {
+    width: 25%;
+    height: 40px;
+  }
+
+   /* Floating Action Button */
+   .over-sf{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+   .skeleton-fab {
+    width: 150px;
+    height: 150px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    /* position: fixed;
+    bottom: 20px;
+    right: 20px; */
+    /* display: flex;
+    align-items: center; */
+  }
+
+  
+  /* Skeleton Loading Effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: 200px 0;
+    }
+  }
+  
+  .skeleton-header,
+  .skeleton-card,
+  .skeleton-text,
+  .skeleton-btn,
+  .skeleton-fab  {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skeleton-header::before,
+  .skeleton-card::before,
+  .skeleton-text::before,
+  .skeleton-btn::before,
+  .skeleton-fab ::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, #e0e0e0 0%, #f0f0f0 50%, #e0e0e0 100%);
+    background-size: 200px 100%;
+    animation: shimmer 1.2s infinite linear;
+  }
+  

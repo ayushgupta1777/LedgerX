@@ -1,0 +1,83 @@
+.transactions-container-transaction_page_loading {
+    padding: 20px;
+    background: #6a0dad;
+    min-height: 100vh;
+  }
+  
+  .search-bar-transaction_page_loading {
+    width: 60%;
+    height: 40px;
+    margin: 10px auto;
+    border-radius: 20px;
+  }
+  
+  .tab-menu-transaction_page_loading {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .tab-transaction_page_loading {
+    width: 100px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 10px;
+  }
+  
+  .transactions-box-transaction_page_loading {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transactions-header-transaction_page_loading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .transactions-title-transaction_page_loading {
+    width: 200px;
+    height: 20px;
+    border-radius: 5px;
+  }
+  
+  .transactions-button-transaction_page_loading {
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+  }
+  
+  .transactions-table-transaction_page_loading {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .transactions-header-row-transaction_page_loading th {
+    padding: 10px;
+  }
+  
+  .transactions-skeleton-row-transaction_page_loading td {
+    padding: 10px;
+  }
+  
+  .skeleton-box-transaction_page_loading {
+    height: 20px;
+    background: linear-gradient(90deg, #ececec 25%, #f3f3f3 50%, #ececec 75%);
+    background-size: 200% 100%;
+    animation: shimmer-transaction_page_loading 1.5s infinite;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  @keyframes shimmer-transaction_page_loading {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  

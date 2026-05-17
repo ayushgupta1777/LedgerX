@@ -1,0 +1,792 @@
+/* General app styling */
+.app-container {
+  font-family: Arial, sans-serif;
+  background-color: #f5f9f8;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.app-header-button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: none;
+  background-color: #e9f5f0;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  user-select: none;
+
+}
+@media (min-width: 768px) {
+.app-header-button.active {
+  background-color: #67c795;
+  color: white;
+}
+}
+
+/* Remove blue outline on click */
+.app-header-button:focus,
+.app-header-button:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Prevent default focus styles across the site */
+*:focus,
+*:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* .app-header-button:hover {
+  background-color: #b5e5d4;
+} */
+/* active-indicator */
+
+.app-main {
+  display: flex;
+  height: 70vh;
+  background-color: #f0f4f7;
+  font-family: Arial, sans-serif;
+}
+
+.chat-container {
+  display: flex;
+  width: 100%;
+}
+
+.chat-sidebar {
+  width: 25%;
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-sidebar-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.chat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chat-list-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+}
+
+.chat-list-item:hover {
+  background-color: #f7faff;
+}
+
+.chat-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat-info {
+  flex-grow: 1;
+}
+
+.chat-name {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-left:10PX ;
+}
+
+.chat-last-message {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.chat-time {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.chat-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.chat-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.chat-content {
+  flex-grow: 1;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+
+
+/* .app-main {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.app-title {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.app-list {
+  list-style: none;
+  padding: 0;
+}
+
+.app-list-item {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+*/
+.app-list-item a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.app-list-item a:hover {
+  text-decoration: underline;
+} 
+
+.app-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #67c795;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.app-button:hover {
+  background-color: #57a983;
+}
+
+.app-button-link {
+  text-decoration: none;
+  color: white;
+}
+
+.message-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  z-index: 1000;
+  min-width: 200px;
+}
+
+.message-container.success {
+  background-color: #67c795;
+}
+
+.message-container.error {
+  background-color: #e57373;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  .chat-main{
+    display: none;
+    
+  }
+  .app-header {
+    flex-direction: row;
+    
+
+  }
+  .app-header2 {
+       background-color: #b5e5d4;
+       border-radius: 5px;
+  }
+
+ .app-header-button {
+    width: 30%;
+
+    margin: 5px 0;
+  }
+
+
+  .app-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e0e0e0;       
+      padding: 1rem;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+      padding: 7px 7px;
+      border: none;
+      border-radius: 30px;
+      margin: 7px 10px;
+    }
+    
+    .tab-container {
+
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 3000px;
+      background: #e0e0e0;
+      border-radius: 25px;
+      /* border-radius: 25px; */
+      overflow: hidden;
+    }
+    
+    .app-header-button {
+      flex: 1;
+      padding: 0.45rem 1rem;
+      /* padding: 0.75rem 1rem; */
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      z-index: 1;
+    }
+    
+    .app-header-button.active {
+      color: white;
+    }
+    
+    .tab-container .active-indicator {
+      position: absolute;
+      width: 50%; 
+      height: 100%;
+      background-color: #90c6ff;
+      border-radius: 25px;
+      z-index: 0;
+      transition: transform 0.3s ease;
+    }
+    
+    .chat-sidebar {
+      width: 100%;
+      background-color: #ffffff;
+      border-right: 1px solid #ddd;
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    .fab-container {
+      position: relative;
+    }
+ /* .app-header-button:hover {
+      color: #007bff;
+    } */
+
+    /* add customer opton  */
+
+
+
+    
+    .fab-options {
+      position: absolute;
+      bottom: 60px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .fab-floating-button {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      font-size: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .fab-floating-button:hover {
+      background-color: #0056b3;
+    }
+    
+    .fab-option-button {
+      padding: 10px 20px;
+      background-color: #f0f0f0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .fab-option-button:hover {
+      background-color: #e0e0e0;
+    }
+    
+}
+
+
+.unread-badge {
+  position: absolute;
+  /* top: 50%; */
+  right: 15%; /* 20% margin from the right */
+  transform: translateY(-50%);
+
+  background-color: #03e950eb;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+} 
+
+/* ------------------------------Show/Hide---------------------------------- */
+
+.faq-container {
+  
+  /* background-color: #4a90e2; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.faq-item {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  padding: 15px 20px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+  margin: 0;
+  color: #222;
+}
+
+.faq-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.faq-item:hover {
+  background: #f1f1f1;
+}
+
+.faq-answer {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-top: 5px;
+  font-size: 16px;
+  color: #444;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide Customer List */
+/* .chat-list.hide {
+  max-height: 0;
+} */
+/* .arrow-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.arrow-icon.rotate {
+  transform: rotate(180deg);
+}
+ */
+
+ /* -------------------------CUSTOMER image circle profile-------------------------- */
+
+ 
+.loan-profile-container-AC {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-left: 15px; */
+}
+
+.loan-profile-image-AC {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  pointer-events: none; /* Prevent interaction like copying the link */
+  user-select: none; /* Prevent text/image selection */
+}
+
+.profile-placeholder-AC {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px; /* Adjusted for better fit */
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  user-select: none; /* Prevent text selection */
+  pointer-events: none; /* Prevent interaction */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Smooth shadow for depth */
+}
+
+
+  /* ------------------saerch system -------------------- */
+
+ /* ✅ Full Container (Background) */
+ .search-container-AC {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0 5px 0;
+  /* background: linear-gradient(to bottom, #74b9ff, #0984e3);  */
+  /* height: 100px;  */
+}
+
+/* ✅ Search Bar Wrapper */
+.search-wrapper-AC {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 10px; /* Full Rounded */
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px #90c6ff; /* Smooth Shadow */
+  width: 80%; /* Responsive width */
+  max-width: 400px; /* Set a max width */
+  transition: all 0.3s ease-in-out;
+}
+
+/* ✅ Search Icon */
+.search-icon-AC {
+  font-size: 18px;
+  color: #aaa;
+  margin-right: 10px;
+}
+
+/* ✅ Search Input */
+.search-input-AC {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #333;
+  background: transparent;
+}
+
+/* ✅ Placeholder Style */
+.search-input-AC::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+
+/* ✅ Left-Side Arrow Inside Blue Circle */
+.search-icon-wrapper-AC {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3498db; /* Blue Background */
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  margin: auto 15px auto 0;
+}
+
+/* ✅ Back Arrow Icon */
+.back-button-AC {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.arrow-icon-AC {
+  font-size: 18px;
+  color: white;
+}
+
+
+
+
+
+
+/* ---------- FILTER ICON BUTTON ---------- */
+.filter-button-AC {
+    background: white;
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: 0 4px 10px #90c6ff;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-button-AC:active {
+    transform: scale(0.95);
+}
+
+.filter-icon-AC {
+    font-size: 18px;
+    color: #3498db;
+}
+
+/* ---------- FILTER MODAL ---------- */
+.ac-filter-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2000;
+    animation: acFadeIn 0.3s ease;
+}
+
+@keyframes acFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.ac-filter-modal {
+    background: white;
+    border-radius: 24px 24px 0 0;
+    width: 100%;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    animation: acSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+@keyframes acSlideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.ac-filter-modal-header {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.ac-filter-modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+}
+
+.ac-filter-close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.ac-filter-modal-body {
+    display: flex;
+    flex: 1;
+    min-height: 300px;
+}
+
+.ac-filter-sidebar {
+    width: 140px;
+    background-color: #f7fdfb;
+    border-right: 1px solid #f0f0f0;
+}
+
+.ac-filter-category {
+    padding: 16px 20px;
+    font-size: 15px;
+    color: #666;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: all 0.2s;
+}
+
+.ac-filter-category.active {
+    color: #248f54;
+    background-color: white;
+    border-left-color: #248f54;
+    font-weight: 600;
+}
+
+.ac-filter-options {
+    flex: 1;
+    padding: 10px 0;
+    background: white;
+}
+
+.ac-filter-option-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.ac-filter-option-row:hover {
+    background-color: #f9f9f9;
+}
+
+.ac-filter-option-row span {
+    font-size: 16px;
+    color: #444;
+}
+
+.ac-radio-circle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.ac-radio-circle.selected {
+    border-color: #248f54;
+}
+
+.ac-radio-dot {
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.ac-radio-circle.selected .ac-radio-dot {
+    background-color: #248f54;
+}
+
+.ac-date-options {
+    padding: 20px;
+    color: #888;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.ac-filter-modal-footer {
+    padding: 16px 20px;
+    display: flex;
+    gap: 15px;
+    border-top: 1px solid #f0f0f0;
+    background: white;
+}
+
+.ac-filter-clear-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background-color: #c0decc;
+    color: #248f54;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.ac-filter-apply-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background-color: #248f54;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.ac-filter-apply-btn:active,
+.ac-filter-clear-btn:active {
+    transform: scale(0.98);
+}

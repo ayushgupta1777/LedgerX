@@ -1,0 +1,179 @@
+/* General Page Styles */
+.finance-dashboard {
+    min-height: 100vh;
+    background-color: #0a0e17;
+    color: white;
+    padding: 16px;
+  }
+  
+  /* Dashboard Header */
+  .finance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .finance-title {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .finance-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .finance-btn {
+    background-color: #1e1e2f;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .finance-btn:hover {
+    background-color: #2e2e3f;
+  }
+  
+  .finance-btn-text {
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    .finance-btn-text {
+      display: inline;
+    }
+  }
+  
+  /* Main Dashboard Grid */
+  .finance-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  @media (min-width: 768px) {
+    .finance-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+  
+  /* Cards */
+  .finance-card {
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Available Balance - Full Width */
+  .balance-finance-card {
+    background-color: black;
+    grid-column: span 2;
+  }
+  
+  /* Net Worth - Gradient Background */
+  .net-worth-finance-card {
+    background: linear-gradient(135deg, #FF8C42, #E44060);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    font-weight: bold;
+    grid-column: span 1;
+    min-width: 50%;
+  }
+  
+  .finance-net-worth-amount {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .income-finance-card {
+    background-color: #1e1e2f;
+    grid-column: span 1;
+  }
+  
+  .spending-income-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .spending-finance-card,
+  .income-summary-finance-card {
+    background-color: #161b22;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .graph-container {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+  }
+  
+  .finance-spending-amount,
+  .finance-income-amount {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .finance-income-value {
+    font-weight: bold;
+  }
+  
+  .finance-red-text {
+    color: red;
+  }
+  
+  .finance-green-text, 
+  .finance-balance-amount {
+    color: #4ade80;
+  }
+
+/* ------------------------------------------------------redirect-to-ac---------------------------------------- */
+  .redirect-to-ac {
+    border-radius: 15px;
+    padding: 20px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #66e2b6, #2aa87a); /* Light to dark green */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: none;
+
+  }
+  
+  .income-box:hover {
+    background: linear-gradient(135deg, #5dd1a6, #24986e); /* Darker on hover */
+  }
+  
+  .income-text {
+    margin-right: 8px;
+  }
+  
+  .income-arrow {
+    font-size: 16px;
+  }
+  
+  .finance-card {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+  

@@ -1,0 +1,189 @@
+/* Reset */
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    min-height: 100vh;
+  } */
+  
+  /* Skeleton Container */
+  .dashboard-skeleton {
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+  }
+  
+  /* Header */
+  .skeleton-header {
+    width: 100%;
+    height: 120px;
+    border-radius: 12px;
+    background: #e0e0e0;
+    margin-bottom: 20px;
+  }
+  
+  /* Balance Section */
+  .skeleton-balance {
+    width: 80%;
+    height: 30px;
+    border-radius: 10px;
+    background: #e0e0e0;
+    margin-bottom: 10px;
+  }
+  
+  .skeleton-subtext {
+    width: 50%;
+    height: 14px;
+    border-radius: 6px;
+    background: #e0e0e0;
+    margin-bottom: 20px;
+  }
+  
+  /* Transaction History */
+  .skeleton-title {
+    width: 40%;
+    height: 16px;
+    background: #e0e0e0;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .skeleton-transaction {
+    width: 100%;
+    height: 50px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Buttons */
+  .skeleton-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .skeleton-btn {
+    width: 48%;
+    height: 50px;
+    background: #e0e0e0;
+    border-radius: 10px;
+  }
+  
+  /* Investment Section */
+  .skeleton-investment {
+    width: 100%;
+    height: 80px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  /* Small Icons */
+  .skeleton-icons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .skeleton-icon {
+    width: 30%;
+    height: 50px;
+    background: #e0e0e0;
+    border-radius: 10px;
+  }
+  
+  /* Floating Action Button */
+  /* .skeleton-fab {
+    width: 50px;
+    height: 50px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  } */
+  
+  /* Skeleton Animation */
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: 200px 0;
+    }
+  }
+  
+  .skeleton-header,
+  .skeleton-balance,
+  .skeleton-subtext,
+  .skeleton-title,
+  .skeleton-transaction,
+  .skeleton-btn,
+  .skeleton-investment,
+  .skeleton-icon,
+  .skeleton-fab {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skeleton-header::before,
+  .skeleton-balance::before,
+  .skeleton-subtext::before,
+  .skeleton-title::before,
+  .skeleton-transaction::before,
+  .skeleton-btn::before,
+  .skeleton-investment::before,
+  .skeleton-icon::before,
+  .skeleton-fab::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, #e0e0e0 0%, #f0f0f0 50%, #e0e0e0 100%);
+    background-size: 200px 100%;
+    animation: shimmer 1.2s infinite linear;
+  }
+  
+  /* Responsive Fixes */
+  @media (min-width: 768px) {
+    .dashboard-skeleton {
+      max-width: 600px;
+    }
+  
+    .skeleton-header {
+      height: 140px;
+    }
+  
+    .skeleton-balance {
+      width: 70%;
+      height: 35px;
+    }
+  
+    .skeleton-subtext {
+      width: 40%;
+    }
+  
+    .skeleton-buttons,
+    .skeleton-icons {
+      gap: 15px;
+    }
+  
+    .skeleton-btn,
+    .skeleton-icon {
+      height: 60px;
+    }
+  
+    .skeleton-fab {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  

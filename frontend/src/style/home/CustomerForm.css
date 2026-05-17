@@ -1,0 +1,195 @@
+.customer_form_container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  /* Header styles */
+  .customer_form_header {
+    background-color: #5434B0;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    height: 64px;
+  }
+  
+  .customer_form_back_button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+  
+  .customer_form_back_button:hover {
+    transform: scale(1.05);
+  }
+  
+  .customer_form_back_button:active {
+    transform: scale(0.95);
+  }
+  
+  .customer_form_title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-left: 12px;
+  }
+  
+  /* Form content styles */
+  .customer_form_content {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .customer_form_field {
+    margin-bottom: 16px;
+  }
+  
+  .customer_form_field_wrapper {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    padding: 0 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: 64px;
+  }
+  
+  .customer_form_icon {
+    margin-right: 12px;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+  
+  .customer_form_input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    background: transparent;
+    height: 100%;
+  }
+  
+  .customer_form_input::placeholder {
+    color: #888;
+  }
+  
+  .customer_form_check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+  }
+  
+  /* Add signature link */
+  .customer_form_add_signature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5434B0;
+    font-weight: 500;
+    margin: 24px 0;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .customer_form_add_signature svg {
+    margin-right: 8px;
+  }
+  
+  .customer_form_add_signature:hover {
+    transform: scale(1.05);
+  }
+  
+  .customer_form_add_signature:active {
+    transform: scale(0.95);
+  }
+  
+  /* Submit button */
+  .customer_form_submit_button {
+    background-color: #5434B0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    width: 100%;
+    margin-top: auto;
+    height: 56px;
+  }
+  
+  .customer_form_submit_button:hover {
+    background-color: #4A2B9E;
+    transform: scale(1.02);
+  }
+  
+  .customer_form_submit_button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Message styles */
+  .customer_form_message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    animation: slideIn 0.3s ease;
+    z-index: 100;
+    min-width: 280px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -20px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+  
+  .customer_form_message.success {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .customer_form_message.error {
+    background-color: #F44336;
+    color: white;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 480px) {
+    .customer_form_title {
+      font-size: 20px;
+    }
+    
+    .customer_form_field_wrapper {
+      height: 56px;
+    }
+    
+    .customer_form_submit_button {
+      font-size: 16px;
+      height: 52px;
+    }
+  }

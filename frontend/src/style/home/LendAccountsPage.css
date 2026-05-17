@@ -1,0 +1,514 @@
+/* Main container styles */
+.borrowed_accounts_container {
+  width: 100%;
+  height: 100vh;
+  background-color: #5434B0;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  position: relative;
+}
+
+/* Header styles */
+.borrowed_accounts_header {
+  padding: 16px 20px;
+  color: #FFFFFF;
+}
+
+.borrowed_accounts_title {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+/* Summary card styles */
+.borrowed_accounts_summary_card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  margin: 0 16px 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.borrowed_accounts_summary_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.borrowed_accounts_summary_label {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333333;
+  line-height: 1.4;
+}
+
+.borrowed_accounts_summary_amount {
+  font-size: 18px;
+  font-weight: 500;
+  color: #FF5F40;
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+.borrowed_accounts_icon_down, 
+.borrowed_accounts_icon_up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.borrowed_accounts_divider {
+  height: 1px;
+  background-color: #EEEEEE;
+  margin: 12px 0;
+}
+
+/* Search container styles */
+.borrowed_accounts_search_container {
+  display: flex;
+  padding: 0 16px 16px;
+  align-items: center;
+}
+
+.borrowed_accounts_search_input_wrapper {
+  display: flex;
+  flex: 1;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: 8px 12px;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.borrowed_accounts_search_icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.borrowed_accounts_search_input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  outline: none;
+  color: #333333;
+}
+
+.borrowed_accounts_search_input::placeholder {
+  color: #888888;
+}
+
+.borrowed_accounts_filter_button {
+  background-color: #FFFFFF;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.borrowed_accounts_filter_button:hover {
+  transform: scale(1.05);
+}
+
+.borrowed_accounts_filter_button:active {
+  transform: scale(0.95);
+}
+
+/* Empty state styles */
+.borrowed_accounts_empty_state {
+  flex: 1;
+  background-color: #F6F6F6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  text-align: center;
+}
+
+.borrowed_accounts_empty_icon {
+  margin-bottom: 16px;
+}
+
+.borrowed_accounts_empty_title {
+  font-size: 16px;
+  color: #555555;
+  margin: 8px 0;
+}
+
+.borrowed_accounts_empty_subtitle {
+  font-size: 14px;
+  color: #999999;
+  margin: 4px 0;
+}
+
+/* Footer navigation styles */
+.borrowed_accounts_footer {
+  background-color: #5434B0;
+  height: 64px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 16px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;  
+}
+
+.borrowed_accounts_nav_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex: 1;
+  height: 100%;
+  color: #CCCCCC;
+  transition: color 0.2s ease;
+}
+
+.borrowed_accounts_nav_text {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.borrowed_accounts_nav_active {
+  color: #FFFFFF;
+}
+
+.borrowed_accounts_add_button {
+  background-color: #9A6AFF;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -28px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.borrowed_accounts_add_button:hover {
+  transform: scale(1.05);
+  background-color: #8A5AEF;
+}
+
+.borrowed_accounts_add_button:active {
+  transform: scale(0.95);
+}
+
+.borrowed_accounts_nav_icon_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal overlay styles */
+.borrowed_accounts_modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.borrowed_accounts_customer_modal {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  width: 85%;
+  max-width: 400px;
+  overflow: hidden;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.borrowed_accounts_modal_header {
+  font-size: 22px;
+  font-weight: 500;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.borrowed_accounts_modal_options {
+  display: flex;
+  padding: 16px;
+}
+
+.borrowed_accounts_modal_option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.borrowed_accounts_modal_option:hover {
+  transform: scale(1.05);
+}
+
+.borrowed_accounts_modal_option:active {
+  transform: scale(0.95);
+}
+
+.borrowed_accounts_modal_icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.borrowed_accounts_contacts_icon {
+  background-color: #6A45D0;
+}
+
+.borrowed_accounts_manual_icon {
+  background-color: #6A45D0;
+}
+
+.borrowed_accounts_modal_option_text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* Mobile navigation at bottom */
+.borrowed_accounts_mobile_nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background-color: #4A2B9E;
+}
+
+.borrowed_accounts_mobile_nav_item {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.borrowed_accounts_mobile_nav_center {
+  width: 50px;
+  height: 4px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .borrowed_accounts_title {
+    font-size: 28px;
+  }
+  
+  .borrowed_accounts_summary_label,
+  .borrowed_accounts_summary_amount {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .borrowed_accounts_title {
+    font-size: 24px;
+  }
+  
+  .borrowed_accounts_footer {
+    height: 56px;
+  }
+  
+  .borrowed_accounts_nav_text {
+    font-size: 10px;
+  }
+}
+
+
+/* Additional styles for the customer list */
+
+/* Customer list container */
+.borrowed_accounts_customer_list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: calc(100vh - 320px);
+  overflow-y: auto;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+/* Customer item */
+.borrowed_accounts_customer_item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.borrowed_accounts_customer_item:last-child {
+  border-bottom: none;
+}
+
+.borrowed_accounts_customer_item:hover {
+  background-color: #f9f9f9;
+}
+
+/* Customer avatar */
+.borrowed_accounts_customer_avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #FEF1EF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  color: #FF5F40;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.borrowed_accounts_customer_avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Customer info section */
+.borrowed_accounts_customer_info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.borrowed_accounts_customer_name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.borrowed_accounts_customer_phone {
+  font-size: 14px;
+  color: #777;
+  margin-top: 2px;
+}
+
+/* Amount section */
+.borrowed_accounts_customer_amount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 16px;
+}
+
+.borrowed_accounts_amount_label {
+  font-size: 12px;
+  color: #888;
+}
+
+.borrowed_accounts_amount_value {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* View button icon */
+.borrowed_accounts_view_button {
+  margin-left: 8px;
+  color: #666;
+}
+
+/* Loading state */
+.borrowed_accounts_loading {
+  padding: 32px;
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+}
+
+/* Search clear button */
+.borrowed_accounts_search_clear {
+  cursor: pointer;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+/* Empty state updates for when search has no results */
+.borrowed_accounts_empty_title {
+  color: #555;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 8px 0 4px;
+  text-align: center;
+}
+
+.borrowed_accounts_empty_subtitle {
+  color: #888;
+  font-size: 14px;
+  margin: 4px 0;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .borrowed_accounts_customer_item {
+    padding: 12px;
+  }
+  
+  .borrowed_accounts_customer_avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  
+  .borrowed_accounts_customer_name {
+    font-size: 15px;
+  }
+  
+  .borrowed_accounts_customer_phone {
+    font-size: 13px;
+  }
+  
+  .borrowed_accounts_amount_value {
+    font-size: 14px;
+  }
+}

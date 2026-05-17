@@ -1,0 +1,227 @@
+/* Google Login Mobile Prompt CSS */
+
+.gmobile-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+  }
+  
+  .gmobile-form {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 35px 30px;
+    overflow: hidden;
+    animation: gmobile-fade-in 0.5s ease-out;
+  }
+  
+  @keyframes gmobile-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .gmobile-h2 {
+    margin: 0 0 15px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+  }
+  
+  .gmobile-form p {
+    margin-bottom: 25px;
+    color: #666;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+  .gmobile-group {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  .gmobile-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  .gmobile-input {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 15px;
+    color: #333;
+    background: #f5f7fa;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  
+  .gmobile-input:focus {
+    border-color: #4285f4;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
+  }
+  
+  .gmobile-input::placeholder {
+    color: #aaa;
+  }
+  
+  .gmobile-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(66, 133, 244, 0.25);
+  }
+  
+  .gmobile-button:hover {
+    background: #3367d6;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(66, 133, 244, 0.3);
+  }
+  
+  .gmobile-button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 2px 4px rgba(66, 133, 244, 0.2);
+  }
+  
+  .gmobile-button.secondary {
+    background: transparent;
+    color: #4285f4;
+    border: 2px solid #4285f4;
+    box-shadow: none;
+  }
+  
+  .gmobile-button.secondary:hover {
+    background: rgba(66, 133, 244, 0.08);
+    transform: translateY(-2px);
+  }
+  
+  .gmobile-button.secondary:active {
+    transform: translateY(1px) scale(0.98);
+    background: rgba(66, 133, 244, 0.12);
+  }
+  
+  /* Alert Message Styling */
+  .gmobile-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 280px;
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .gmobile-alert.active {
+    transform: translateX(0);
+  }
+  
+  .gmobile-alert.success {
+    background: #48bb78;
+  }
+  
+  .gmobile-alert.error {
+    background: #f56565;
+  }
+  
+  .gmobile-alert-icon {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .gmobile-alert-message {
+    flex: 1;
+  }
+  
+  /* Loading indicator for button when processing */
+  .gmobile-button.loading {
+    position: relative;
+    pointer-events: none;
+    color: transparent;
+  }
+  
+  .gmobile-button.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: gmobile-spin 0.8s linear infinite;
+  }
+  
+  @keyframes gmobile-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 480px) {
+    .gmobile-form {
+      padding: 25px 20px;
+    }
+    
+    .gmobile-h2 {
+      font-size: 24px;
+    }
+    
+    .gmobile-input {
+      padding: 12px 15px;
+    }
+    
+    .gmobile-button {
+      padding: 12px;
+    }
+  }
+  
+  /* Applied focus-visible styles for accessibility */
+  .gmobile-button:focus-visible {
+    outline: 3px solid rgba(66, 133, 244, 0.5);
+    outline-offset: 2px;
+  }
+  
+  .gmobile-input:focus-visible {
+    outline: 3px solid rgba(66, 133, 244, 0.5);
+    outline-offset: 2px;
+  }

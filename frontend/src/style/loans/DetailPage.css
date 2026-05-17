@@ -1,0 +1,261 @@
+.loan-profile-detail-page {
+  padding: 20px;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.loan-profile-info {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.loan-profile-info h2 {
+  margin-bottom: 10px;
+}
+
+.loan-profile-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.signatures-section {
+  margin-top: 20px;
+}
+
+.signatures-section h2 {
+  margin-bottom: 10px;
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.signature-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.signature-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.actions button {
+  background: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #0056b3;
+}
+
+
+/*  -----------------------------------------new-DetaipageStyles------------------------------------- */
+
+/* Main Container */
+.detaipage-container {
+background: #f2f5fc;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 10px;
+font-family: "Arial", sans-serif;
+}
+
+/* Header Section */
+.detaipage-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+max-width: 400px;
+font-size: 18px;
+font-weight: bold;
+color: #333;
+padding: 20px;
+
+}
+
+/* Back Icon */
+.detaipage-back-icon {
+cursor: pointer;
+font-size: 18px;
+}
+
+/* Record Text */
+.detaipage-record {
+font-size: 14px;
+color: #007bff;
+cursor: pointer;
+}
+
+/* Main Amount Display */
+.detaipage-amount {
+font-size: 32px;
+font-weight: bold;
+color: #0056b3;
+margin-top: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+/* Subtitle */
+.detaipage-subtitle {
+color: #888;
+font-size: 14px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+/* Details Section */
+.detaipage-details {
+background: white;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+margin-top: 20px;
+width: 100%;
+max-width: 450px;
+}
+
+/* Individual Rows */
+.detaipage-row {
+display: flex;
+justify-content: space-between;
+font-size: 16px;
+padding: 10px 0;
+color: #333;
+}
+
+/* Value Styling */
+.detaipage-value {
+font-weight: bold;
+color: #0056b3;
+}
+
+/* Footer Notice */
+.detaipage-footer {
+font-size: 12px;
+color: #777;
+text-align: center;
+margin-top: 15px;
+max-width: 350px;
+}
+
+/* Invite Friends Section */
+.detaipage-invite {
+background: white;
+padding: 15px;
+border-radius: 10px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+margin-top: 15px;
+width: 100%;
+max-width: 400px;
+text-align: center;
+}
+
+.invite-step {
+font-size: 14px;
+color: #333;
+padding: 5px 0;
+}
+
+/* Invite Friends Button */
+.detaipage-invite-btn {
+width: 100%;
+max-width: 400px;
+background:linear-gradient(to right, #4f46e5, #9333ea);
+color: white;
+padding: 12px;
+border: none;
+border-radius: 25px;
+font-size: 16px;
+font-weight: bold;
+margin-top: 15px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.detaipage-invite-btn:hover {
+background: #0056b3;
+}
+
+/* ------------------------------note--pen------------------------------------------------- */
+
+/* Main Note Box */
+.note-container {
+background: white;
+padding: 15px;
+border-radius: 8px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+max-width: 400px;
+margin: 20px auto;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+/* Display Mode */
+.note-display {
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.note-display p {
+font-size: 14px;
+color: #333;
+margin: 0;
+flex: 1;
+word-wrap: break-word;
+}
+
+/* Edit Icon */
+.edit-icon {
+font-size: 16px;
+color: #007bff;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.edit-icon:hover {
+color: #0056b3;
+}
+
+/* Editable Textarea */
+.note-input {
+width: 100%;
+height: auto;
+min-height: 50px;
+border: 1px solid #ccc;
+border-radius: 6px;
+font-size: 14px;
+padding: 10px;
+resize: none;
+outline: none;
+}

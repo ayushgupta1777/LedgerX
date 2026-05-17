@@ -1,0 +1,276 @@
+/* CZoneLogo.css */
+
+/* Main splash container */
+.czone-splash-container {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #1a1a2e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  padding: 1rem;
+}
+
+/* Welcome screen after animation */
+.czone-welcome-screen {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #1a1a2e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.czone-welcome-text {
+  color: white;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Background particles */
+.czone-particles-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.czone-particle {
+  position: absolute;
+  width: clamp(4px, 0.5vw, 8px);
+  height: clamp(4px, 0.5vw, 8px);
+  background-color: #60a5fa;
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: czone-particle-pulse 3s ease-in-out infinite;
+}
+
+@keyframes czone-particle-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
+/* Logo wrapper */
+.czone-logo-wrapper {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Letters container */
+.czone-letters-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.25rem, 1vw, 1rem);
+  margin-bottom: clamp(1.5rem, 3vh, 3rem);
+  flex-wrap: wrap;
+}
+
+.czone-letter {
+  font-size: clamp(3rem, 12vw, 8rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #60a5fa 0%, #22d3ee 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: czone-letter-bounce 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(-50px);
+  line-height: 1;
+}
+
+@keyframes czone-letter-bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tagline */
+.czone-tagline {
+  font-size: clamp(0.75rem, 2vw, 1.5rem);
+  color: #93c5fd;
+  letter-spacing: clamp(0.1em, 0.25em, 0.3em);
+  opacity: 0;
+  animation: czone-tagline-fade 1s ease-in 1.5s forwards;
+  font-weight: 300;
+  padding: 0 1rem;
+}
+
+@keyframes czone-tagline-fade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loader wrapper */
+.czone-loader-wrapper {
+  margin-top: clamp(2rem, 5vh, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.czone-loader-container {
+  position: relative;
+  width: clamp(60px, 10vw, 120px);
+  height: clamp(60px, 10vw, 120px);
+}
+
+.czone-loader-outer-ring {
+  position: absolute;
+  inset: 0;
+  border: clamp(2px, 0.4vw, 4px) solid rgba(59, 130, 246, 0.3);
+  border-radius: 50%;
+}
+
+.czone-loader-ring-1 {
+  position: absolute;
+  inset: 0;
+  border: clamp(2px, 0.4vw, 4px) solid transparent;
+  border-top-color: #60a5fa;
+  border-radius: 50%;
+  animation: czone-loader-spin 1.5s linear infinite;
+}
+
+.czone-loader-ring-2 {
+  position: absolute;
+  inset: clamp(4px, 0.8vw, 8px);
+  border: clamp(2px, 0.4vw, 4px) solid transparent;
+  border-top-color: #22d3ee;
+  border-radius: 50%;
+  animation: czone-loader-spin-reverse 1s linear infinite;
+}
+
+@keyframes czone-loader-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes czone-loader-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* Progress dots */
+.czone-dots-container {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.375rem, 1vw, 0.75rem);
+  margin-top: clamp(1.5rem, 3vh, 2.5rem);
+}
+
+.czone-progress-dot {
+  width: clamp(8px, 1.2vw, 14px);
+  height: clamp(8px, 1.2vw, 14px);
+  background-color: #60a5fa;
+  border-radius: 50%;
+  animation: czone-dot-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes czone-dot-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Responsive breakpoints for fine-tuning */
+@media (max-width: 480px) {
+  .czone-letters-container {
+    gap: 0.2rem;
+  }
+  
+  .czone-tagline {
+    letter-spacing: 0.15em;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .czone-letter {
+    font-size: clamp(4rem, 10vw, 6rem);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .czone-letter {
+    font-size: clamp(5rem, 10vw, 7rem);
+  }
+}
+
+@media (min-width: 1025px) {
+  .czone-letter {
+    font-size: clamp(6rem, 8vw, 8rem);
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+  .czone-letter {
+    font-size: clamp(2.5rem, 10vh, 4rem);
+  }
+  
+  .czone-letters-container {
+    margin-bottom: 1rem;
+  }
+  
+  .czone-loader-wrapper {
+    margin-top: 1.5rem;
+  }
+  
+  .czone-dots-container {
+    margin-top: 1rem;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1920px) {
+  .czone-letter {
+    font-size: 9rem;
+  }
+  
+  .czone-tagline {
+    font-size: 1.75rem;
+  }
+  
+  .czone-loader-container {
+    width: 140px;
+    height: 140px;
+  }
+}

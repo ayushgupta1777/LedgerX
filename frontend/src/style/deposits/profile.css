@@ -1,0 +1,454 @@
+/* CustomerProfile.css */
+
+.customer-profile-container {
+  max-width: 400px;
+  margin: 0 auto;
+  /* background-color: #f5f5f5; */
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-back-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333333;
+  cursor: pointer;
+  padding: 4px;
+  font-weight: 400;
+}
+
+.profile-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333333;
+  margin: 0;
+}
+
+.profile-help-btn {
+  background: none;
+  border: 2px solid #999999;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #999999;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.profile-content {
+  padding: 0;
+}
+
+.profile-avatar-section {
+  background-color: #ffffff;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.profile-avatar {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  background-color: #dee2e6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.avatar-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: relative;
+}
+
+.avatar-icon::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: #dee2e6;
+  border-radius: 50%;
+}
+
+.avatar-icon::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 18px;
+  background-color: #dee2e6;
+  border-radius: 15px 15px 0 0;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 32px;
+  height: 32px;
+  background-color: #28a745;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: 3px solid #ffffff;
+}
+
+.profile-name-section {
+  background-color: #e6f8eb;
+  margin: 16px 16px 24px 16px;
+  border-radius: 12px;
+}
+
+.profile-name-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.name-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  color: #28a745;
+  font-size: 18px;
+}
+
+.profile-name {
+  flex: 1;
+  font-size: 16px;
+  color: #333333;
+  font-weight: 400;
+}
+
+.profile-arrow {
+  color: #999999;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.profile-section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333333;
+  margin: 0 0 12px 16px;
+}
+
+.contact-item,
+.permission-item,
+.action-item {
+  background-color: #e6f8eb;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  margin: 0 16px 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.contact-item:hover,
+.permission-item:hover {
+  background-color: #dddddd;
+}
+
+.contact-item:last-child,
+.permission-item:last-child,
+.action-item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-icon,
+.permission-icon,
+.action-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  font-size: 18px;
+}
+
+.phone-icon {
+  color: #28a745;
+}
+
+.location-icon {
+  color: #28a745;
+}
+
+.sms-icon {
+  color: #28a745;
+}
+
+.deny-icon {
+  color: #28a745;
+}
+
+.block-icon {
+  color: #dc3545;
+}
+
+.delete-icon {
+  color: #dc3545;
+}
+
+.contact-text,
+.permission-text,
+.action-text {
+  flex: 1;
+  font-size: 16px;
+  color: #333333;
+  font-weight: 400;
+}
+
+.contact-arrow {
+  color: #999999;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.address-item {
+  cursor: pointer;
+}
+
+.address-edit-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.address-input {
+  padding: 12px;
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.address-input:focus {
+  border-color: #20c997;
+}
+
+.address-input:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.address-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.address-save-btn,
+.address-cancel-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.address-save-btn {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.address-save-btn:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.address-save-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.address-cancel-btn {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+
+.address-cancel-btn:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.toggle-label::before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: #28a745;
+}
+
+.toggle-input:checked + .toggle-label::before {
+  transform: translateX(26px);
+}
+
+.block-item {
+  color: #dc3545;
+}
+
+.delete-item {
+  color: #dc3545;
+  cursor: pointer;
+}
+
+.delete-item:hover {
+  background-color: #e0b3b3;
+}
+
+.profile-deleted-container {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-deleted-message {
+  background-color: #ffffff;
+  padding: 32px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  margin: 16px;
+}
+
+.profile-deleted-message h2 {
+  color: #28a745;
+  margin: 0 0 16px 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.profile-deleted-message p {
+  color: #6c757d;
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .customer-profile-container {
+    max-width: 100%;
+  }
+  
+  .profile-header {
+    padding: 16px 12px;
+  }
+  
+  .profile-avatar-section {
+    padding: 32px 12px;
+  }
+  
+  .contact-item,
+  .permission-item,
+  .action-item {
+    padding: 14px 12px;
+  }
+  
+  .section-title {
+    margin-left: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .customer-profile-container {
+    max-width: 500px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    border-radius: 0;
+    overflow: hidden;
+    margin-top: 0;
+  }
+}
+
+/* Animation for smooth transitions */
+.contact-item,
+.permission-item,
+.action-item {
+  transition: all 0.2s ease;
+}
+
+.address-edit-container {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,883 @@
+/* Base styles and resets for Taken Loan Profile */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.taken-loan-dashboard-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+  padding: 20px;
+}
+
+.taken-loan-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-gap: 20px;
+  /* max-width: 800px; */
+  width: 100%;
+  height: 100%;
+}
+
+/* Card styles */
+.taken-loan-card {
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.taken-loan-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.taken-loan-card:active {
+  transform: scale(0.98);
+}
+
+.taken-loan-card-white {
+  background-color: #fff;
+}
+
+.taken-loan-card-red {
+  background: linear-gradient(to bottom, #b8e994, #78e08f);
+  color: white;
+}
+
+.taken-loan-card-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.taken-loan-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: inherit;
+}
+
+.taken-loan-card-amount {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.taken-loan-card-percentage {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.taken-loan-positive {
+  color: #4caf50;
+}
+
+.taken-loan-negative {
+  color: #f44336;
+}
+
+.taken-loan-card-comparison,
+.taken-loan-card-update-text {
+  font-size: 14px;
+  color: #666;
+  margin-top: auto;
+}
+
+.taken-loan-card-red .taken-loan-card-comparison {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.taken-loan-card-date {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .taken-loan-dashboard-container {
+    min-height: 90vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+    padding: 7px;
+  }
+
+  .taken-loan-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 7px;
+    max-width: 800px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .taken-loan-card {
+    padding: 20px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .taken-loan-card-amount {
+    font-size: 28px;
+  }
+}
+
+/* Header Section */
+.taken-loan-header {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  border-bottom-right-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  margin-bottom: -90px;
+  display: flex;
+  position: relative;
+  box-shadow: none;
+}
+
+.taken-loan-customer-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.taken-loan-customer-info h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.taken-loan-customer-info p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.taken-loan-lender-label {
+  color: #ffd700 !important;
+  font-size: 14px !important;
+  margin-top: 5px !important;
+}
+
+.taken-loan-receipt-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.taken-loan-receipt-btn:hover {
+  background-color: #218838;
+}
+
+.taken-loan-bill-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.taken-loan-bill-info p {
+  color: #28a745;
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.taken-loan-update-btn {
+  cursor: pointer;
+}
+
+.taken-loan-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.taken-loan-profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.taken-loan-profile-placeholder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  user-select: none;
+  pointer-events: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Read More Button */
+.taken-loan-read-more-btn {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(to right, #56ab2f, #78e08f);
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.taken-loan-read-more-btn:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.taken-loan-read-more-btn .taken-loan-text {
+  margin-right: 10px;
+}
+
+.taken-loan-read-more-btn .taken-loan-icon {
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taken-loan-circular-animation {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: white;
+  animation: rotate 1s linear infinite;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes rotate {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+/* Progress Container */
+.taken-loan-progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.taken-loan-progress-bar-container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.taken-loan-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.taken-loan-progress-fill {
+  height: 100%;
+  background: #56ab2f;
+  transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.taken-loan-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
+}
+
+.taken-loan-progress-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #56ab2f;
+  text-align: left;
+  margin-top: 5px;
+}
+
+/* Note Container */
+.taken-loan-note-container {
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.taken-loan-note-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.taken-loan-note-display {
+  position: relative;
+
+}
+
+.taken-loan-note-display p {
+  margin: 0;
+  color: #333;
+}
+
+.taken-loan-edit-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  color: #56ab2f;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.taken-loan-note-display:hover .taken-loan-edit-icon {
+  opacity: 1;
+  transform: rotate(15deg);
+}
+
+.taken-loan-note-input {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  border: 2px solid #56ab2f;
+  border-radius: 8px;
+  font-size: 14px;
+  resize: vertical;
+  transition: height 0.3s ease;
+}
+
+.taken-loan-note-input:focus {
+  outline: none;
+  height: 120px;
+  box-shadow: 0 0 0 3px rgba(86, 171, 47, 0.2);
+}
+
+/* Footer */
+.taken-loan-footer {
+  background: #f9f9f9;
+  padding: 40px 0 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.taken-loan-footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1100px;
+}
+
+.taken-loan-footer-center {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.taken-loan-footer-logo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #56ab2f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taken-loan-footer-icon {
+  margin-right: 5px;
+}
+
+.taken-loan-footer-nav {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.taken-loan-footer-nav li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  position: relative;
+  transition: transform 0.2s ease-out;
+}
+
+.taken-loan-footer-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #56ab2f;
+  transition: width 0.3s ease;
+}
+
+.taken-loan-footer-nav a:hover::after {
+  width: 100%;
+}
+
+.taken-loan-footer-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.taken-loan-social-icon {
+  background: #56ab2f;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.taken-loan-social-icon:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.taken-loan-social-icon:active {
+  transform: scale(0.96);
+}
+
+.taken-loan-social-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+.taken-loan-social-icon:hover::before {
+  left: 100%;
+}
+
+.taken-loan-footer-divider {
+  width: 80%;
+  height: 1px;
+  background: #b0c4de;
+  margin: 20px 0;
+}
+
+.taken-loan-footer-copyright {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+/* Dropdown Container */
+.taken-loan-dropdown-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.taken-loan-dropdown-btn {
+  background: #56ab2f;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.taken-loan-dropdown-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease-out;
+}
+
+.taken-loan-dropdown-btn:active::after {
+  transform: translate(-50%, -50%) scale(2);
+  opacity: 0;
+}
+
+.taken-loan-arrow {
+  margin-left: 5px;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.taken-loan-arrow.taken-loan-rotate {
+  transform: rotate(180deg);
+}
+
+.taken-loan-dropdown-btn.taken-loan-active {
+  transform: scale(1.05);
+}
+
+.taken-loan-dropdown-menu {
+  position: absolute;
+  bottom: 50px;
+  right: -145px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  width: 200px;
+  transform: scale(0.9);
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.25s ease,
+    visibility 0.25s;
+}
+
+.taken-loan-dropdown-menu.taken-loan-show {
+  transform: scale(1) translateX(-80%);
+  opacity: 1;
+  visibility: visible;
+}
+
+.taken-loan-dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: #56ab2f;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, padding-left 0.3s;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s, padding-left 0.3s;
+}
+
+.taken-loan-dropdown-menu.taken-loan-show .taken-loan-dropdown-item:nth-child(1) {
+  animation: fadeInUp 0.3s 0.05s forwards;
+}
+
+.taken-loan-dropdown-menu.taken-loan-show .taken-loan-dropdown-item:nth-child(2) {
+  animation: fadeInUp 0.3s 0.1s forwards;
+}
+
+.taken-loan-dropdown-menu.taken-loan-show .taken-loan-dropdown-item:nth-child(3) {
+  animation: fadeInUp 0.3s 0.15s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.taken-loan-dropdown-item:hover {
+  background: #e8f5e9;
+  padding-left: 20px;
+}
+
+.taken-loan-dropdown-item:active {
+  transform: scale(0.96);
+}
+
+.taken-loan-dropdown-icon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+/* Modal Overlay */
+.taken-loan-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.taken-loan-topup-container {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 70vh;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(100%);
+  animation: slideUp 0.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.taken-loan-close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.taken-loan-close-button:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+.taken-loan-topup-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #56ab2f;
+}
+
+.taken-loan-topup-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.taken-loan-topup-input,
+.taken-loan-topup-select,
+.taken-loan-date-input {
+  width: 80%;
+  font-size: 18px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.taken-loan-topup-input:focus,
+.taken-loan-topup-select:focus,
+.taken-loan-date-input:focus {
+  outline: none;
+  border-color: #56ab2f;
+  box-shadow: 0 0 0 3px rgba(86, 171, 47, 0.2);
+}
+
+.taken-loan-topup-button {
+  background: #56ab2f;
+  color: white;
+  font-size: 20px;
+  width: 80%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.taken-loan-topup-button:hover {
+  background: #4a9629;
+  transform: scale(1.04);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.taken-loan-topup-button:active {
+  transform: scale(0.96);
+}
+
+.taken-loan-topup-button:disabled {
+  background: gray;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.taken-loan-topup-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+.taken-loan-input-group {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .taken-loan-footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .taken-loan-footer-center {
+    margin-top: 50px;
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  /* .taken-loan-read-more-btn {
+    bottom: -10px !important;
+  } */
+
+  .taken-loan-dropdown-menu.taken-loan-show {
+    transform: scale(1) translateX(-50%);
+  }
+}
+
+/* Ripple Effect */
+.taken-loan-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Value animation */
+.taken-loan-value {
+  position: relative;
+  display: inline-block;
+}
+
+.taken-loan-card:hover .taken-loan-value::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  animation: growLine 0.6s forwards;
+  opacity: 0.5;
+}
+
+@keyframes growLine {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
