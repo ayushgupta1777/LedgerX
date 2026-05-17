@@ -5,7 +5,7 @@ const cors = require('cors');
 
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 const mongoose = require('mongoose');
 
 const signup = require('./Routes/user_auth/signup');
@@ -45,8 +45,10 @@ app.use(cors({
     'https://czone-credit.web.app',
     'http://localhost:3000',
     'http://localhost:3001',
+    'http://localhost:3030',
     'http://127.0.0.1:3000',
-    'http://127.0.0.1:3001'
+    'http://127.0.0.1:3001',
+    'http://127.0.0.1:3030'
   ],
   credentials: true
 }));
