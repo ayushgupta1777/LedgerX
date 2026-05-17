@@ -5,7 +5,7 @@ const cors = require('cors');
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 
 const signup = require('./Routes/user_auth/signup');
@@ -40,7 +40,16 @@ const LoanReminder = require('./Routes/Loans/loanReminders');
 
 app.use(bodyParser.json());
 
-app.use(cors({ origin: 'https://czone-credit.web.app' }));
+app.use(cors({
+  origin: [
+    'https://czone-credit.web.app',
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:3001'
+  ],
+  credentials: true
+}));
 
 // Initial Routes
 app.get("/api/health", (req, res) => res.status(200).json({ status: "ok", message: "API is healthy" }));

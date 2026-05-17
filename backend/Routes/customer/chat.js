@@ -10,7 +10,13 @@ const server = http.createServer(router);
 // Initialize Socket.IO with CORS settings
 const io = new Server(server, {
   cors: {
-    origin: 'https://czone-credit.web.app',
+    origin: [
+      'https://czone-credit.web.app',
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'http://127.0.0.1:3000',
+      'http://127.0.0.1:3001'
+    ],
     methods: ['GET', 'POST'],
   },
   path: '/socket.io', // Ensure this is the same as in your client request
