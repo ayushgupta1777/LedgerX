@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../style/loans/loanForm.css';
+import CreditIntelligenceUI from './dynamics/CreditIntelligenceUI';
 
 const LoanForm = () => {
   
@@ -20,6 +21,7 @@ const LoanForm = () => {
   });
   const { customerID } = useParams();
   const navigate = useNavigate();
+  const [showAIModal, setShowAIModal] = useState(false);
 
 
   const handleChange = (e) => {
@@ -70,6 +72,9 @@ const LoanForm = () => {
         <div className="form-left">
           <h2>Loan Details</h2>
           <p>Fill in the loan details below to create a new account.</p>
+          <button type="button" className="ai-start-btn" style={{marginTop: '20px', background: '#8b5cf6'}} onClick={() => setShowAIModal(true)}>
+              🤖 Analyze with AI
+          </button>
         </div>
         <div className="form-right">
           <form onSubmit={handleSubmit}>
@@ -186,6 +191,15 @@ const LoanForm = () => {
           </form>
         </div>
       </div>
+      {showAIModal && (
+        <CreditIntelligenceUI
+          customerID={customerID}
+          loanAmount={loanDetails.amount}
+          interestRate={loanDetails.interestRate}
+          durationMonths={12}
+          onClose={() => setShowAIModal(false)}
+        />
+      )}
     </div>
   );
 };

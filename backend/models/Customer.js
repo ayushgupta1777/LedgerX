@@ -23,4 +23,7 @@ balanceType: { type: String, enum: ['Advance', 'Due'], default: 'Advance' }
 
 });
 
+// Index for fast relational lookup
+customerSchema.index({ userId: 1 });
+
 module.exports = mongoose.model('Customer', customerSchema);

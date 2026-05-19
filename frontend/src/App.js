@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PrivateRoute from "./component/user_auth/PrivateRoute";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import Home from './component/Deposits/AC';
 import Customer_form from './component/Deposits/Customer_form';
@@ -50,9 +51,11 @@ import PrintableInvoice from './component/loan_despo/PrintableInvoice';
 
 import LoanReminders from './component/Loans/dynamics/LoanReminders';
 
+const queryClient = new QueryClient();
 
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
     <Router>
       <Routes>
         {/* Public Routes */}
@@ -322,6 +325,7 @@ function App() {
 
       </Routes>
     </Router>
+    </QueryClientProvider>
   );
 }
 

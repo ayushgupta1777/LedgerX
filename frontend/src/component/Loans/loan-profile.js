@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -9,6 +10,7 @@ import { ThreeDot } from 'react-loading-indicators';
 import Message from '../global/alert';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import Loan_detail_loading from "../global/Loading/loan-profile-loading"
+import CreditIntelligenceUI from './dynamics/CreditIntelligenceUI';
 
 import CompanyWatermark from "../global/water-mark/CompanyWatermark";
 import { formatToIndianCurrency, formatToShortIndianCurrency, toIndianWords } from '../../utils/currencyUtils';
@@ -23,6 +25,7 @@ const LoanProfile = () => {
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isHindi, setIsHindi] = useState(false);
+  const [showAIModal, setShowAIModal] = useState(false);
 
   const [amount1, setAmount1] = useState('');
   const [method, setMethod] = useState('Cash');
@@ -197,52 +200,52 @@ const LoanProfile = () => {
   }, [loanDetails]);
 
 
+  // --- REACT QUERY REFACTOR ---
+  const { data: loanDetailsData, isLoading: isLoadingLoan, error: errorLoan } = useQuery({
+    queryKey: ['loanProfile', customerID],
+    queryFn: async () => {
+      const token = localStorage.getItem('token');
+      const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/loan-profile/${customerID}`, {
+        headers: { 'x-auth-token': token }
+      });
+      return data;
+    },
+    refetchInterval: 60000, // Replaces setInterval polling, intelligently pauses when tab is inactive
+    refetchOnWindowFocus: true,
+  });
+
+  const { data: profileData, isLoading: isLoadingProfile, error: errorProfile } = useQuery({
+    queryKey: ['customerProfile', customerID],
+    queryFn: async () => {
+      const token = localStorage.getItem('token');
+      const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/loan-profile2/${customerID}`, {
+        headers: { 'x-auth-token': token }
+      });
+      return data;
+    },
+  });
+
+  // Sync React Query data to local state to minimize refactoring breakages
   useEffect(() => {
-    const fetchLoanDetails = async () => {
+    if (loanDetailsData) {
+      setLoanDetails(loanDetailsData);
       setBgColor(generateRandomColor());
-
-      try {
-        const token = localStorage.getItem('token');
-
-        const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/loan-profile/${customerID}`, {
-          headers: { 'x-auth-token': token }
-        });
-        setLoanDetails(data);
-        setMessage({ type: 'success', text: 'Successful get Customer DATA' });
-
-        setLoading(false);
-      } catch (err) {
-        setError('Error fetching loan details. Please try again.');
-        setLoading(false);
-        setMessage({ type: 'error', text: 'Unauthorized: You do not have access to this loan' });
-
-      }
-    };
-
-    fetchLoanDetails();
-  }, [customerID]);
+    }
+    if (errorLoan) {
+      setError('Error fetching loan details.');
+      setMessage({ type: 'error', text: 'Unauthorized: You do not have access to this loan' });
+    }
+  }, [loanDetailsData, errorLoan]);
 
   useEffect(() => {
-    const fetchLoanDetails1 = async () => {
-      try {
-        const token = localStorage.getItem('token');
+    if (profileData) {
+      setProfile(profileData);
+    }
+  }, [profileData]);
 
-        const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/loan-profile2/${customerID}`, {
-          headers: { 'x-auth-token': token }
-        });
-        setProfile(data);
-        setLoading(false);
-      } catch (err) {
-        setError('Error fetching loan details. 85678 Please try again.');
-        setLoading(false);
-        setMessage({ type: 'error', text: 'Unauthorized: You do not have access to this loan' });
-
-      }
-    };
-
-    fetchLoanDetails1();
-  }, [customerID]);
-
+  useEffect(() => {
+    setLoading(isLoadingLoan || isLoadingProfile);
+  }, [isLoadingLoan, isLoadingProfile]);
 
   const handleUpdateBillNumber = async () => {
     const newBillNumber = prompt('Enter new bill number:'); // Simple input method  
@@ -262,39 +265,6 @@ const LoanProfile = () => {
       }
     }
   };
-
-  useEffect(() => {
-    const fetchLoanDetails = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/loan-profile/${customerID}`, {
-          headers: { 'x-auth-token': token }
-        });
-        setLoanDetails(data);
-        setLoading(false);
-      } catch (err) {
-        setError('Error fetching loan details.');
-        setLoading(false);
-      }
-    };
-
-    const updateInterest = async () => {
-      try {
-        await axios.put(`${process.env.REACT_APP_API_BASE_URL}/update-interest/${customerID}`);
-      } catch (err) {
-        console.error('Error updating interest:', err);
-      }
-    };
-
-    // Fetch initial details and update interest periodically
-    fetchLoanDetails();
-    const interval = setInterval(() => {
-      fetchLoanDetails();
-    }, 60000); // Update every minute (interest changes daily, so this is plenty)
-    // }, 6000); // Update every second
-    // }, 600000);
-    return () => clearInterval(interval); // Cleanup on component unmount
-  }, [customerID]);
 
   // Handle Top-Up
   const handleTopUp = async () => {
@@ -1014,6 +984,14 @@ const LoanProfile = () => {
               </button>
 
               <h2 className="topup-title">Top-Up Loan</h2>
+              <button 
+                type="button" 
+                className="ai-start-btn" 
+                style={{marginBottom: '15px', background: '#8b5cf6', width: '100%', padding: '10px', borderRadius: '8px', border: 'none', color: 'white', fontWeight: 'bold', cursor: 'pointer', boxShadow: '0 4px 15px rgba(139, 92, 246, 0.4)'}} 
+                onClick={(e) => { e.stopPropagation(); setShowAIModal(true); }}
+              >
+                  🤖 Analyze with AI Before Approving
+              </button>
 
               <div className="topup-box">
                 <label className="topup-label">Offer Your Amount</label>
@@ -1292,6 +1270,17 @@ const LoanProfile = () => {
   <span className="social-icon ripple-effect">Tw</span>
 </div> */}
       {/* </div> */}
+      
+      {showAIModal && (
+        <CreditIntelligenceUI
+          customerID={customerID}
+          loanAmount={amount1}
+          interestRate={topupinterestrate}
+          durationMonths={12}
+          onClose={() => setShowAIModal(false)}
+        />
+      )}
+      
       <Message type={message.type} text={message.text} />
 
     </div >

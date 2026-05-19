@@ -97,6 +97,9 @@ app.use('/api', Lendertransaction);
 app.use("/api/images", imageRoutes);
 app.use('/api', reminderRoutes);
 
+// AI Routes
+app.use('/api/ai/credit-intelligence', require('./Routes/ai/creditIntelligence'));
+
 
 // Middleware
 

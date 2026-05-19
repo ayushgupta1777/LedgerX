@@ -82,7 +82,7 @@ router.put('/customers/:customerID/balance', authenticateUser, async (req, res) 
 router.get('/me/summary', authenticateUser, async (req, res) => {
   try {
     // find all customers created by this logged-in user
-    const customers = await Customer.find({ userId: req.userId });
+    const customers = await Customer.find({ userId: req.userId }).lean();
 
     let totalAdvance = 0;
     let totalDue = 0;

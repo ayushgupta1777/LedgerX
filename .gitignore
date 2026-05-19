@@ -37,3 +37,11 @@ firebase-debug.log
 # System files
 .DS_Store
 Thumbs.db
+
+# AI Credit Intelligence (Experimental Multi-Agent System)
+backend/Routes/ai/
+backend/services/
+backend/utils/redisClient.js
+frontend/src/component/Loans/dynamics/CreditIntelligenceUI.css
+frontend/src/component/Loans/dynamics/CreditIntelligenceUI.js
+
