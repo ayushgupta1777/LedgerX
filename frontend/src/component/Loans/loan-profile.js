@@ -127,35 +127,29 @@ const LoanProfile = () => {
   };
 
   // Add this smoothModal close function
-  const handleSmoothModalClose = () => {
+  const handleSmoothModalClose = (setOpenState) => {
     const modal = document.querySelector('.topup-container');
 
     if (modal) {
       modal.style.transform = 'translateY(100%)';
       setTimeout(() => {
-        setIsModalOpen(false); // or setIsModalOpen2(false) depending on which modal you're closing
-      }, 400); // Match this to your animation duration
+        setOpenState(false);
+      }, 300);
     } else {
-      setIsModalOpen(false); // Fallback if element not found
+      setOpenState(false);
     }
   };
 
   // Replace modal close handlers with this:
   const handleCloseModal = (e) => {
     if (e.target.classList.contains("modal-overlay")) {
-      handleSmoothModalClose();
-      setTimeout(() => {
-        setIsModalOpen(false);
-      }, 300);
+      handleSmoothModalClose(setIsModalOpen);
     }
   };
 
   const handleCloseModal2 = (e) => {
     if (e.target.classList.contains("modal-overlay")) {
-      handleSmoothModalClose();
-      setTimeout(() => {
-        setIsModalOpen2(false);
-      }, 300);
+      handleSmoothModalClose(setIsModalOpen2);
     }
   };
 
@@ -425,10 +419,7 @@ const LoanProfile = () => {
   // Add close handler for the new modal
   const handleCloseModal3 = (e) => {
     if (e.target.classList.contains("modal-overlay")) {
-      handleSmoothModalClose();
-      setTimeout(() => {
-        setIsModalOpen3(false);
-      }, 300);
+      handleSmoothModalClose(setIsModalOpen3);
     }
   };
   //   const calculateDailyInterest = (amount, interestRate) => {
@@ -971,78 +962,105 @@ const LoanProfile = () => {
       {
         isModalOpen && (
           <div className="modal-overlay" onClick={handleCloseModal}>
-            <div className="topup-container">
+            <div className="topup-container" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-drag-handle"></div>
+
               <button
                 className="close-button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleSmoothModalClose();
-                  setTimeout(() => setIsModalOpen(false), 300);
+                  handleSmoothModalClose(setIsModalOpen);
                 }}
               >
                 ✖
               </button>
 
-              <h2 className="topup-title">Top-Up Loan</h2>
-              <button 
-                type="button" 
-                className="ai-start-btn" 
-                style={{marginBottom: '15px', background: '#8b5cf6', width: '100%', padding: '10px', borderRadius: '8px', border: 'none', color: 'white', fontWeight: 'bold', cursor: 'pointer', boxShadow: '0 4px 15px rgba(139, 92, 246, 0.4)'}} 
-                onClick={(e) => { e.stopPropagation(); setShowAIModal(true); }}
-              >
-                  🤖 Analyze with AI Before Approving
-              </button>
+              <div className="modal-header">
+                <h2 className="modal-title">Top-Up Loan</h2>
+                <p className="modal-subtitle">Extend additional credit to this customer</p>
+              </div>
 
-              <div className="topup-box">
-                <label className="topup-label">Offer Your Amount</label>
-                <input
-                  type="number"
-                  value={amount1}
-                  onChange={(e) => setAmount1(Math.max(0, e.target.value))}
-                  className="topup-input"
-                  placeholder="₹ 150"
-                  min="0"
-                />
-                <input
-                  type="number"
-                  value={topupinterestrate}
-                  onChange={(e) => settopupinterestrate(Math.max(0, e.target.value))}
-                  className="topup-input"
-                  placeholder="5%"
-                  min="0"
-                />
+              <div className="modal-body">
+                <button 
+                  type="button" 
+                  className="ai-analyze-btn" 
+                  onClick={(e) => { e.stopPropagation(); setShowAIModal(true); }}
+                >
+                  🤖 Analyze with AI Before Approving
+                </button>
+
+                <div className="modal-form">
+                  <div className="form-row">
+                    <div className="form-group col-6">
+                      <label className="form-label">Offer Amount</label>
+                      <div className="input-with-prefix">
+                        <span className="input-prefix">₹</span>
+                        <input
+                          type="number"
+                          value={amount1}
+                          onChange={(e) => setAmount1(Math.max(0, e.target.value))}
+                          className="form-input"
+                          placeholder="0"
+                          min="0"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-group col-6">
+                      <label className="form-label">Interest Rate</label>
+                      <div className="input-with-suffix">
+                        <input
+                          type="number"
+                          value={topupinterestrate}
+                          onChange={(e) => settopupinterestrate(Math.max(0, e.target.value))}
+                          className="form-input"
+                          placeholder="5"
+                          min="0"
+                        />
+                        <span className="input-suffix">%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group col-6">
+                      <label className="form-label">Payment Method</label>
+                      <select
+                        value={method}
+                        onChange={(e) => setMethod(e.target.value)}
+                        className="form-select"
+                      >
+                        <option value="Cash">Cash</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Credit Card">Credit Card</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group col-6">
+                      <label className="form-label">Date</label>
+                      <input
+                        type="date"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="modal-footer">
                 <button
                   onClick={(e) => {
                     createRipple(e);
                     handleTopUp1();
                   }}
-                  className="topup-button ripple-effect"
+                  className="btn-primary"
                   disabled={loading}
                 >
-                  {loading ? "Processing..." : "Apply"}
+                  {loading ? "Processing..." : "Apply Top-Up"}
                 </button>
-
-                <div className="input-group">
-                  <label className="topup-label">Date:</label>
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="date-input"
-                  />
-                </div>
               </div>
-
-              <label className="topup-label">Payment Method:</label>
-              <select
-                value={method}
-                onChange={(e) => setMethod(e.target.value)}
-                className="topup-select"
-              >
-                <option value="Cash">Cash</option>
-                <option value="Bank Transfer">Bank Transfer</option>
-                <option value="Credit Card">Credit Card</option>
-              </select>
             </div>
           </div>
         )
@@ -1051,116 +1069,179 @@ const LoanProfile = () => {
       {
         isModalOpen2 && (
           <div className="modal-overlay" onClick={handleCloseModal2}>
-            <div className="topup-container">
-              <button className="close-button" onClick={() => setIsModalOpen2(false)}>✖</button>
+            <div className="topup-container" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-drag-handle"></div>
 
-
-              <h2 className="topup-title">Pay Principal Amount</h2>
-
-              <div className="topup-box">
-                <label className="topup-label">Payment Amount</label>
-                <input
-                  type="number"
-                  value={amount2}
-                  onChange={(e) => setAmount2(Math.max(0, e.target.value))}
-                  className="topup-input"
-                  placeholder="₹ 150"
-                  min="0"
-                />
-                <button onClick={handleRepayment} className="topup-button" disabled={loading}>
-                  {loading ? "Processing..." : "Pay Principal"}
-                </button>
-
-                <div className="input-group">
-                  <label className="topup-label">Date:</label>
-                  <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-                </div>
-
-              </div>
-
-
-
-              <label className="topup-label">Payment Method:</label>
-              <select value={method} onChange={(e) => setMethod(e.target.value)} className="topup-select">
-                <option value="Cash">Cash</option>
-                <option value="Bank Transfer">Bank Transfer</option>
-                <option value="Credit Card">Credit Card</option>
-              </select>
-            </div>
-          </div>
-        )
-      }
-
-
-      {
-        isModalOpen3 && (
-          <div className="modal-overlay" onClick={handleCloseModal3}>
-            <div className="topup-container">
               <button
                 className="close-button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleSmoothModalClose();
-                  setTimeout(() => setIsModalOpen3(false), 300);
+                  handleSmoothModalClose(setIsModalOpen2);
                 }}
               >
                 ✖
               </button>
 
-              <h2 className="topup-title">Pay Interest</h2>
+              <div className="modal-header">
+                <h2 className="modal-title">Pay Principal</h2>
+                <p className="modal-subtitle">Record a principal repayment transaction</p>
+              </div>
 
-              <div className="topup-box">
-                <label className="topup-label">Interest Payment Amount</label>
-                <p className="info-text">
-                  Available Interest: ₹{formatToIndianCurrency(Math.floor(totalInterest || 0))}
-                </p>
-                <input
-                  type="number"
-                  value={amount3}
-                  onChange={(e) => setAmount3(Math.max(0, e.target.value))}
-                  className="topup-input"
-                  placeholder="₹ 150"
-                  min="0"
-                  max={totalInterest}
-                />
+              <div className="modal-body">
+                <div className="info-badge-container">
+                  <span className="info-badge-label">Remaining Principal:</span>
+                  <span className="info-badge-value">₹{formatToIndianCurrency(Math.floor(remainingPrincipal || 0))}</span>
+                </div>
+
+                <div className="modal-form">
+                  <div className="form-group">
+                    <label className="form-label">Payment Amount</label>
+                    <div className="input-with-prefix">
+                      <span className="input-prefix">₹</span>
+                      <input
+                        type="number"
+                        value={amount2}
+                        onChange={(e) => setAmount2(Math.max(0, e.target.value))}
+                        className="form-input"
+                        placeholder="0"
+                        min="0"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group col-6">
+                      <label className="form-label">Payment Method</label>
+                      <select
+                        value={method}
+                        onChange={(e) => setMethod(e.target.value)}
+                        className="form-select"
+                      >
+                        <option value="Cash">Cash</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Credit Card">Credit Card</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group col-6">
+                      <label className="form-label">Date</label>
+                      <input
+                        type="date"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="modal-footer">
+                <button
+                  onClick={(e) => {
+                    createRipple(e);
+                    handleRepayment();
+                  }}
+                  className="btn-primary"
+                  disabled={loading}
+                >
+                  {loading ? "Processing..." : "Pay Principal"}
+                </button>
+              </div>
+            </div>
+          </div>
+        )
+      }
+
+      {
+        isModalOpen3 && (
+          <div className="modal-overlay" onClick={handleCloseModal3}>
+            <div className="topup-container" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-drag-handle"></div>
+
+              <button
+                className="close-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSmoothModalClose(setIsModalOpen3);
+                }}
+              >
+                ✖
+              </button>
+
+              <div className="modal-header">
+                <h2 className="modal-title">Pay Interest</h2>
+                <p className="modal-subtitle">Record an interest repayment transaction</p>
+              </div>
+
+              <div className="modal-body">
+                <div className="info-badge-container warning">
+                  <span className="info-badge-label">Available Interest:</span>
+                  <span className="info-badge-value">₹{formatToIndianCurrency(Math.floor(totalInterest || 0))}</span>
+                </div>
+
+                <div className="modal-form">
+                  <div className="form-group">
+                    <label className="form-label">Interest Payment Amount</label>
+                    <div className="input-with-prefix">
+                      <span className="input-prefix">₹</span>
+                      <input
+                        type="number"
+                        value={amount3}
+                        onChange={(e) => setAmount3(Math.max(0, e.target.value))}
+                        className="form-input"
+                        placeholder="0"
+                        min="0"
+                        max={totalInterest}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group col-6">
+                      <label className="form-label">Payment Method</label>
+                      <select
+                        value={method}
+                        onChange={(e) => setMethod(e.target.value)}
+                        className="form-select"
+                      >
+                        <option value="Cash">Cash</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Credit Card">Credit Card</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group col-6">
+                      <label className="form-label">Date</label>
+                      <input
+                        type="date"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                  </div>
+
+                  {!totalInterest || totalInterest <= 0 ? (
+                    <div className="validation-warning-box">
+                      ⚠️ No interest available to pay
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="modal-footer">
                 <button
                   onClick={(e) => {
                     createRipple(e);
                     handleInterestPayment();
                   }}
-                  className="topup-button ripple-effect"
+                  className="btn-primary"
                   disabled={loading || !totalInterest || totalInterest <= 0}
                 >
                   {loading ? "Processing..." : "Pay Interest"}
                 </button>
-
-                <div className="input-group">
-                  <label className="topup-label">Date:</label>
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="date-input"
-                  />
-                </div>
               </div>
-
-              <label className="topup-label">Payment Method:</label>
-              <select
-                value={method}
-                onChange={(e) => setMethod(e.target.value)}
-                className="topup-select"
-              >
-                <option value="Cash">Cash</option>
-                <option value="Bank Transfer">Bank Transfer</option>
-                <option value="Credit Card">Credit Card</option>
-              </select>
-
-              {!totalInterest || totalInterest <= 0 ? (
-                <p className="warning-text" style={{ color: 'red', marginTop: '10px' }}>
-                  ⚠️ No interest available to pay
-                </p>
-              ) : null}
             </div>
           </div>
         )

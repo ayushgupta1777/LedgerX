@@ -28,12 +28,12 @@
 
 /* Main container */
 .byaj-home-container {
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
   background-color: var(--light-gray);
   min-height: 100vh;
   position: relative;
-  padding-bottom: 80px; /* Space for bottom navigation */
+  padding-bottom: 80px;
 }
 
 /* Header styles */
@@ -675,7 +675,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   display: flex;
   justify-content: space-around;
   background-color: var(--white);

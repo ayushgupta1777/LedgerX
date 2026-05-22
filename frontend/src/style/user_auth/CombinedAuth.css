@@ -1,86 +1,290 @@
-/* OTP Container */
+/* Premium Combined Authentication & OTP Layout */
+
+/* Parent Background Centering */
+.log-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 24px;
+  background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.08) 0%, rgba(255, 255, 255, 0) 80%), var(--color-bg-gradient);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Authentication Card & OTP Card */
+.login-form,
 .otp-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 32px;
+  box-sizing: border-box;
+  animation: pageFadeIn var(--transition-slow) forwards ease-out;
+  transition: all var(--transition-normal);
+}
+
+/* Headings */
+.log-h2,
+.otp-container h2 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 28px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Form layout spacing */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Inputs & Labels */
+.log-labal {
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  margin-left: 2px;
+}
+
+.log-input {
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  box-sizing: border-box;
+  transition: all var(--transition-normal);
+}
+
+.log-input:focus {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+  box-shadow: 0 0 0 4px var(--color-primary-glow);
+}
+
+/* Core Buttons */
+.log-button,
+.otp-button {
+  width: 100%;
+  padding: 14px;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-surface);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  border: none;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 14px var(--color-primary-glow);
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all var(--transition-bounce);
+  text-align: center;
+}
+
+.log-button:hover,
+.otp-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+}
+
+.log-button:active,
+.otp-button:active {
+  transform: translateY(0);
+}
+
+/* Link Anchors */
+.button-a {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-align: center;
+  margin-top: 8px;
+  transition: color var(--transition-fast);
+}
+
+.button-a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+/* Social Logins Divider */
+.social-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px 0;
+  width: 100%;
+}
+
+.social-login p {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.social-login p::before,
+.social-login p::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: 0 12px;
+}
+
+/* Social icons flex list */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.social-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  background-color: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-bounce);
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.social-icon:hover {
+  transform: translateY(-4px) scale(1.05);
+  background-color: var(--color-bg);
+}
+
+.social-icon.facebook:hover {
+  color: #1877f2;
+  border-color: rgba(24, 119, 242, 0.4);
+  box-shadow: 0 4px 14px rgba(24, 119, 242, 0.2);
+}
+
+.social-icon.twitter:hover {
+  color: #1da1f2;
+  border-color: rgba(29, 161, 242, 0.4);
+  box-shadow: 0 4px 14px rgba(29, 161, 242, 0.2);
+}
+
+.social-icon.google:hover {
+  color: #ea4335;
+  border-color: rgba(234, 67, 53, 0.4);
+  box-shadow: 0 4px 14px rgba(234, 67, 53, 0.2);
+}
+
+/* OTP Code Verification Layout */
+.otp-inputs {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin: 16px 0 28px 0;
+  width: 100%;
+}
+
+.otp-input {
+  width: 48px;
+  height: 54px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  box-sizing: border-box;
+  transition: all var(--transition-normal);
+}
+
+.otp-input:focus {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+  box-shadow: 0 0 0 4px var(--color-primary-glow);
+  transform: scale(1.05);
+}
+
+/* OTP Actions */
+.otp-resend-button {
+  background: transparent;
+  border: none;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  margin-top: 14px;
+  transition: color var(--transition-fast);
+  text-align: center;
+}
+
+.otp-resend-button:not(:disabled):hover {
+  color: var(--color-primary);
+}
+
+.otp-resend-button:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .login-form,
+  .otp-container {
+    padding: 32px 20px;
+    max-width: 100%;
   }
-  
-  /* Title */
+
+  .log-h2,
   .otp-container h2 {
     font-size: 24px;
-    font-weight: bold;
-    color: #333;
     margin-bottom: 20px;
   }
-  
-  /* OTP Inputs */
-  .otp-inputs {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
+
   .otp-input {
-    width: 50px;
-    height: 50px;
-    text-align: center;
+    width: 40px;
+    height: 48px;
     font-size: 18px;
-    font-weight: bold;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.2s ease-in-out;
   }
-  
-  .otp-input:focus {
-    border-color: #4a90e2;
-    box-shadow: 0 0 6px rgba(74, 144, 226, 0.5);
-  }
-  
-  /* Buttons */
-  .otp-button {
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    background-color: #28a745;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    transition: background-color 0.2s;
-  }
-  
-  .otp-button:hover {
-    background-color: #218838;
-  }
-  
-  .otp-resend-button {
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .otp-resend-button:disabled {
-    background-color: #ddd;
-    color: #aaa;
-    cursor: not-allowed;
-  }
-  
-  .otp-resend-button:hover:not(:disabled) {
-    background-color: #0056b3;
-  }
+}
   

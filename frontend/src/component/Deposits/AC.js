@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-// import ChatPage from '../../component/big-screen/cdp7';
 import Customer from './Customer_form';
 import Supplier from './Supplier_form';
+import CDP1 from './detail/CDP1';
 import Message from '../global/alert';
 import BottomMenu from '../global/bottom_manu';
 import '../../style/deposits/ac.css'
@@ -466,7 +466,12 @@ const App = () => {
     setSuppliers([...suppliers, supplier]);
   };
 
-  const isMobile = window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
 
   const fetchOwnerSummary = async () => {
@@ -757,376 +762,6 @@ const App = () => {
 
   return (
     <>
-      <style>
-        {`
-          /* Container and layout */
-          .ac-container {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-              Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            background-color: #f6fdf9;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding: 16px 16px 100px 16px; /* Extra bottom padding for bottom nav */
-            box-sizing: border-box;
-          }
-
-          /* Top bar */
-          .ac-topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-          }
-
-          .ac-logo {
-            position: relative;
-            width: 40px;
-            height: 40px;
-            background: #6abd4a;
-            border-radius: 50%;
-            font-weight: 700;
-            font-size: 22px;
-            line-height: 40px;
-            text-align: center;
-            color: #186027;
-            user-select: none;
-            box-shadow: 0 2px 6px rgb(78 194 79 / 0.45);
-          }
-          .ac-logo-sub {
-            position: absolute;
-            right: -6px;
-            bottom: -4px;
-            background: #3e8541;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            font-size: 12px;
-            color: #d4eac7;
-            font-weight: bold;
-            line-height: 18px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgb(0 0 0 / 0.25);
-          }
-
-          /* Share button top-right */
-          .ac-share-button {
-            background: #f6fdf9;
-            border-radius: 18px;
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 500;
-            color: #2e6040;
-            font-size: 14px;
-            box-shadow: 0 2px 6px rgb(107 196 87 / 0.3);
-            border: none;
-            cursor: pointer;
-            user-select: none;
-            transition: background-color 0.25s ease;
-          }
-          .ac-share-button:hover {
-            background: #d4eac7;
-          }
-          /* Icons inside share button */
-          .ac-share-icon {
-            stroke: #2e6040;
-          }
-
-          /* Tabs: Customer / Supplier */
-          .ac-tabs {
-            display: flex;
-            background: #f6fdf9;
-            border-radius: 24px;
-            max-width: 320px;
-            box-shadow: 0 2px 6px rgb(107 196 87 / 0.3);
-            overflow: hidden;
-            border: 1px solid transparent;
-            margin-bottom: 16px;
-            user-select: none;
-          }
-          .ac-tab {
-            flex: 1;
-            padding: 8px 0;
-            text-align: center;
-            font-weight: 600;
-            font-size: 16px;
-            color: #2e6040;
-            cursor: pointer;
-            background-color: transparent;
-            transition: background-color 0.3s ease, color 0.3s ease;
-          }
-          .ac-tab.active {
-            background-color: #d4eac7;
-            color: #186027;
-          }
-
-          /* Controls right to tabs: filter and search */
-          .ac-controls {
-            display: flex;
-            gap: 12px;
-            margin-left: auto;
-          }
-          .ac-icon-button {
-            background: #f6fdf9;
-            border-radius: 14px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 2px 6px rgb(107 196 87 / 0.3);
-            transition: background-color 0.25s ease;
-          }
-          .ac-icon-button:hover {
-            background: #d4eac7;
-          }
-          .ac-filter-icon,
-          .ac-search-icon {
-            stroke: #2e6040;
-          }
-
-          /* Net Balance Card */
-          .ac-net-balance-card {
-            background: #f6fdf9;
-            border-radius: 14px;
-            padding: 14px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 3px 8px rgb(107 196 87 / 0.3);
-            margin-bottom: 20px;
-          }
-          .ac-net-balance-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-          }
-          .ac-net-balance-label {
-            font-weight: 600;
-            font-size: 17px;
-            color: #2e6040;
-          }
-          .ac-net-balance-sub {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: #2e6040cc;
-          }
-          .ac-net-balance-sub svg {
-            stroke: #2e6040cc;
-          }
-          .ac-net-balance-amount {
-            font-weight: 600;
-            font-size: 20px;
-            color: #d84324;
-            user-select: none;
-            cursor: pointer;
-          }
-          .ac-net-balance-amount::after {
-            content: " ›";
-            font-weight: 600;
-            color: #d84324;
-          }
-          .ac-net-balance-youget {
-            font-size: 11px;
-            color: #a3a3a3;
-            user-select: none;
-            margin-top: 2px;
-            font-weight: 600;
-          }
-
-          /* Customer list */
-          .ac-customer-list {
-            border-top: 1px solid #e7e7e7;
-          }
-
-          /* Single customer card */
-          .ac-customer {
-            display: flex;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #e7e7e7;
-            user-select: none;
-          }
-          .ac-avatar {
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            color: white;
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 44px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 1px 4px rgb(0 0 0 / 0.15);
-            margin-right: 12px;
-          }
-          .ac-avatar-sub {
-            position: absolute;
-            right: -2px;
-            bottom: -1px;
-            background: #3e8541;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            font-size: 10px;
-            color: #d4eac7;
-            font-weight: bold;
-            line-height: 16px;
-            text-align: center;
-            box-shadow: 0 2px 3px rgb(0 0 0 / 0.25);
-          }
-
-          .ac-customer-info {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            color: #505050;
-          }
-          .ac-customer-name {
-            font-weight: 600;
-            font-size: 16px;
-            color: #222222;
-          }
-
-          .ac-customer-credit {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 14px;
-            color: #565656cc;
-          }
-
-          .ac-check-icon {
-            display: inline-block;
-            vertical-align: middle;
-            width: 14px;
-            height: 14px;
-          }
-
-          /* Credit amount and type */
-          .ac-customer-balance {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            min-width: 72px;
-            user-select: none;
-          }
-          .ac-amount {
-            font-weight: 600;
-            font-size: 18px;
-          }
-          .ac-amount.advance {
-            color: #248f54;
-          }
-          .ac-amount.due {
-            color: #d84324;
-          }
-          .ac-balance-type {
-            font-weight: 600;
-            font-size: 12px;
-            color: #a3a3a3;
-            margin-top: 4px;
-          }
-
-          /* Add Customer Button bottom right */
-          .ac-add-customer-btn {
-            position: fixed;
-            bottom: 80px;
-            right: 18px;
-            background-color: #a5c4a0;
-            color: #2e6040;
-            border: none;
-            border-radius: 12px;
-            padding: 12px 20px;
-            box-shadow: 0 6px 10px rgb(163 207 147 / 0.75);
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            user-select: none;
-            transition: background-color 0.3s ease;
-            z-index: 10;
-          }
-          .ac-add-customer-btn:hover {
-            background-color: #7ca269;
-          }
-
-          /* Bottom nav */
-          .ac-bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #f6fdf9;
-            border-radius: 14px 14px 0 0;
-            box-shadow: 0 -4px 15px rgb(107 196 87 / 0.35);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            height: 72px;
-            user-select: none;
-            padding-bottom: env(safe-area-inset-bottom);
-          }
-          .ac-nav-item {
-            flex: 1;
-            text-align: center;
-            font-size: 12px;
-            color: #464646;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 4px 0 6px;
-            cursor: pointer;
-            position: relative;
-          }
-          .ac-nav-item svg,
-          .ac-nav-item .home-icon {
-            fill: #464646;
-            width: 22px;
-            height: 22px;
-            margin-bottom: 4px;
-          }
-          .ac-nav-item.active {
-            color: #2e6040;
-          }
-          .ac-nav-item.active .home-icon {
-            background: #d4eac7;
-            border-radius: 16px;
-            padding: 2px 6px;
-            fill: #2e6040;
-            box-shadow: 0 2px 6px rgb(107 196 87 / 0.5);
-          }
-
-          /* Responsive adjustments */
-
-          @media (max-width: 400px) {
-            .ac-container {
-              padding-left: 12px;
-              padding-right: 12px;
-            }
-            .ac-net-balance-card {
-              padding-left: 14px;
-              padding-right: 14px;
-            }
-            .ac-add-customer-btn {
-              padding: 12px 18px;
-              font-size: 14px;
-              bottom: 90px;
-              right: 14px;
-            }
-          }
-        `}
-      </style>
       <div className="app-container">
 
         <div className="search-container-AC">
@@ -1262,14 +897,12 @@ const App = () => {
 
 
                               .map((customer) => (
-                                <li
-                                  key={customer.customerID}
-                                  className=""
-
-
-                                >
-                                  <article
-                                    className="ac-customer"
+                                 <li
+                                   key={customer.customerID}
+                                   className={`ac-customer-list-item ${selectedChat && selectedChat.id === customer.customerID ? 'selected' : ''}`}
+                                 >
+                                   <article
+                                     className="ac-customer"
                                     key={customer.id}
                                     aria-label={`${customer.name} ${customer.type === "Advance" ? "Advance" : "Due"
                                       }`}
@@ -1306,22 +939,17 @@ const App = () => {
 
 
                                     <div className="ac-customer-info" onClick={() => {
-                                      markMessagesAsRead(customer.phoneNumber); // First function call
-                                      navigate(`/customer/${customer.customerID}`, {
-                                        state: { name: customer.name, phone: customer.phoneNumber }, // Second function call
-                                      });
+                                      markMessagesAsRead(customer.phoneNumber);
+                                      handleCustomerClick(customer);
                                     }}>
                                       <span className="ac-customer-name">{customer.name}</span>
                                       <span className="ac-customer-credit">
-
                                       </span>
                                     </div>
 
                                     <div className="ac-customer-balance" onClick={() => {
                                       markMessagesAsRead(customer.phoneNumber);
-                                      navigate(`/customer/${customer.customerID}`, {
-                                        state: { name: customer.name, phone: customer.phoneNumber },
-                                      });
+                                      handleCustomerClick(customer);
                                     }} >
                                       <span
                                         className={`ac-amount ${customer.balanceType === "Advance" ? "advance" : "due"
@@ -1457,8 +1085,21 @@ const App = () => {
                 </>
               )}
             </aside>
+
+            {!isMobile && (
+              <section className="desktop-detail-panel">
+                {selectedChat ? (
+                  <CDP1 customerID={selectedChat.id} inline={true} />
+                ) : (
+                  <div className="desktop-empty-state glass-panel">
+                    <div className="empty-state-icon">💳</div>
+                    <h3>No Customer Selected</h3>
+                    <p>Select a customer from the left list to view their transaction ledger, chats, and send payment reminders.</p>
+                  </div>
+                )}
+              </section>
+            )}
           </div>
-          {/* ADD WATERMARK HERE - Above bottom nav */}
         </main>
 
         <CompanyWatermark companyName="Adsngrow" companyUrl="https://adsngrow.in" />

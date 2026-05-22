@@ -17,8 +17,9 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 import CDP1 from "../../global/Loading/CDP1"
 
-const CustomerTransaction = ({ customers }) => {
-  const { customerID } = useParams();
+const CustomerTransaction = ({ customers, customerID: propCustomerID, inline }) => {
+  const { customerID: paramCustomerID } = useParams();
+  const customerID = propCustomerID || paramCustomerID;
   const navigate = useNavigate();
   const inputRef = useRef(null);
 
@@ -767,9 +768,11 @@ const handleTransaction = async () => {
         {/* Left Section: Back Button & Customer Info */}
         <div className="modern-header-left">
           {/* Modern Back Button */}
-          <button onClick={() => navigate(-1)} className="modern-back-button">
-            <FontAwesomeIcon icon={faArrowLeftLong} className="back-icon" />
-          </button>
+          {!inline && (
+            <button onClick={() => navigate(-1)} className="modern-back-button">
+              <FontAwesomeIcon icon={faArrowLeftLong} className="back-icon" />
+            </button>
+          )}
 
           {/* Customer Info */}
           <div 

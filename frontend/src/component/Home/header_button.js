@@ -110,24 +110,22 @@ export default function UniqueButtonGroup() {
   }
 
   return (
-    <div className="unique-button-container">
-      <button 
-        className="unique-button unique-button-primary" 
-        onClick={() => navigate('/home')}
-      >
-Loan book
-        <span className="ripple"></span>
+    <div className="unique-button-container page-fade-in">
+      <div className="unique-button-container-buttons">
+        <button 
+          className="unique-button unique-button-primary" 
+          onClick={() => navigate('/home')}
+        >
+          Loan Book
+        </button>
 
-      </button>
-
-      <button 
-        className="unique-button unique-button-secondary" 
-        onClick={() => navigate('/ac')}
-      >
-        Account Book
-        <span className="ripple"></span>
-
-      </button>
+        <button 
+          className="unique-button unique-button-secondary" 
+          onClick={() => navigate('/ac')}
+        >
+          Account Book
+        </button>
+      </div>
     </div>
   );
 }

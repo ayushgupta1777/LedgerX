@@ -1,195 +1,291 @@
+/* LedgerX Customer Form Premium Stylesheet */
+
 .customer_form_container {
-    width: 100%;
-    min-height: 100vh;
-    background-color: #F0F0F0;
-    display: flex;
-    flex-direction: column;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-bg-gradient);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-primary);
+}
+
+/* --- HEADER SECTION --- */
+.customer_form_header {
+  background: transparent;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  height: 72px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.customer_form_back_button {
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  width: 40px;
+  height: 40px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.customer_form_back_button:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  transform: translateX(-2px);
+}
+
+.customer_form_back_button svg path {
+  fill: var(--color-text-secondary);
+  transition: fill var(--transition-normal);
+}
+
+.customer_form_back_button:hover svg path {
+  fill: var(--color-primary);
+}
+
+.customer_form_title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-left: 16px;
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+/* --- FORM LAYOUTS --- */
+.customer_form_content {
+  flex: 1;
+  padding: 16px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.customer_form_content form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+
+.customer_form_field {
+  margin-bottom: 20px;
+}
+
+.customer_form_field_wrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0 20px;
+  box-shadow: var(--shadow-sm);
+  height: 60px;
+  transition: all var(--transition-normal);
+}
+
+.customer_form_field_wrapper:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-primary-glow);
+  background-color: var(--color-surface);
+}
+
+.customer_form_icon {
+  margin-right: 14px;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.customer_form_icon svg path {
+  fill: var(--color-text-muted);
+  transition: fill var(--transition-normal);
+}
+
+.customer_form_field_wrapper:focus-within .customer_form_icon svg path {
+  fill: var(--color-primary);
+}
+
+.customer_form_input {
+  flex: 1;
+  border: none !important;
+  outline: none !important;
+  font-size: 15px !important;
+  color: var(--color-text-primary) !important;
+  background: transparent !important;
+  height: 100% !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.customer_form_input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.8;
+}
+
+.customer_form_check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  animation: popCheck var(--transition-bounce);
+}
+
+@keyframes popCheck {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.customer_form_check svg path {
+  fill: var(--color-success);
+}
+
+/* --- INTERACTIVE SIGNATURE LINK --- */
+.customer_form_add_signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin: 32px 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all var(--transition-bounce);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: var(--font-heading);
+}
+
+.customer_form_add_signature svg {
+  margin-right: 8px;
+}
+
+.customer_form_add_signature svg path {
+  fill: var(--color-primary);
+  transition: fill var(--transition-normal);
+}
+
+.customer_form_add_signature:hover {
+  transform: translateY(-2px);
+  color: var(--color-primary-hover);
+}
+
+.customer_form_add_signature:hover svg path {
+  fill: var(--color-primary-hover);
+}
+
+.customer_form_add_signature:active {
+  transform: scale(0.95);
+}
+
+/* --- CONTINUE/SUBMIT BUTTON --- */
+.customer_form_submit_button {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--color-primary-glow);
+  transition: all var(--transition-normal);
+  width: 100%;
+  margin-top: auto;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.customer_form_submit_button:hover {
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+  transform: scale(1.01) translateY(-1px);
+}
+
+.customer_form_submit_button:active {
+  transform: scale(0.98);
+}
+
+/* --- MESSAGE TOAST SYSTEM --- */
+.customer_form_message {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  animation: slideInDown var(--transition-normal) cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10000;
+  min-width: 300px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -24px);
   }
-  
-  /* Header styles */
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.customer_form_message.success {
+  background: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-hover) 100%);
+  color: #ffffff;
+}
+
+.customer_form_message.error {
+  background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-hover) 100%);
+  color: #ffffff;
+}
+
+/* --- RESPONSIVE ADAPTATIONS --- */
+@media (max-width: 480px) {
   .customer_form_header {
-    background-color: #5434B0;
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 16px;
-    height: 64px;
-  }
-  
-  .customer_form_back_button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-  }
-  
-  .customer_form_back_button:hover {
-    transform: scale(1.05);
-  }
-  
-  .customer_form_back_button:active {
-    transform: scale(0.95);
+    padding: 16px 16px 8px;
   }
   
   .customer_form_title {
-    font-size: 24px;
-    font-weight: 500;
-    margin-left: 12px;
+    font-size: 18px;
   }
   
-  /* Form content styles */
   .customer_form_content {
-    flex: 1;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .customer_form_field {
-    margin-bottom: 16px;
+    padding: 12px 16px 30px;
   }
   
   .customer_form_field_wrapper {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 8px;
-    padding: 0 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    height: 64px;
+    height: 54px;
   }
   
-  .customer_form_icon {
-    margin-right: 12px;
-    color: #333;
-    display: flex;
-    align-items: center;
-  }
-  
-  .customer_form_input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #333;
-    background: transparent;
-    height: 100%;
-  }
-  
-  .customer_form_input::placeholder {
-    color: #888;
-  }
-  
-  .customer_form_check {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 8px;
-  }
-  
-  /* Add signature link */
-  .customer_form_add_signature {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #5434B0;
-    font-weight: 500;
-    margin: 24px 0;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  
-  .customer_form_add_signature svg {
-    margin-right: 8px;
-  }
-  
-  .customer_form_add_signature:hover {
-    transform: scale(1.05);
-  }
-  
-  .customer_form_add_signature:active {
-    transform: scale(0.95);
-  }
-  
-  /* Submit button */
   .customer_form_submit_button {
-    background-color: #5434B0;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 16px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    width: 100%;
-    margin-top: auto;
-    height: 56px;
+    font-size: 15px;
+    height: 50px;
   }
-  
-  .customer_form_submit_button:hover {
-    background-color: #4A2B9E;
-    transform: scale(1.02);
-  }
-  
-  .customer_form_submit_button:active {
-    transform: scale(0.98);
-  }
-  
-  /* Message styles */
-  .customer_form_message {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 14px;
-    animation: slideIn 0.3s ease;
-    z-index: 100;
-    min-width: 280px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-  
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translate(-50%, -20px);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, 0);
-    }
-  }
-  
-  .customer_form_message.success {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .customer_form_message.error {
-    background-color: #F44336;
-    color: white;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 480px) {
-    .customer_form_title {
-      font-size: 20px;
-    }
-    
-    .customer_form_field_wrapper {
-      height: 56px;
-    }
-    
-    .customer_form_submit_button {
-      font-size: 16px;
-      height: 52px;
-    }
-  }
+}

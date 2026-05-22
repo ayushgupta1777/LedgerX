@@ -87,48 +87,59 @@ console.error = (...args) => {
                                                          
         return (
           <div className="bottom-header">
-            {routes.map((route, index) => (
-              <div key={index}>
-                {route.icon === faList ? (
-                  <div className="category-icon" onClick={toggleCategoryMenu}>
-                    <FontAwesomeIcon
-                      className="img"
-                      icon={route.icon}
-                      style={{ color: "#080808" }}
-                    />
-                    {isCategoryOpen && (
-                      <div className="category-menu">
-                      <Link
-                        to="/home"
-                        className={`category-item ${
-                          location.pathname === '/home' ? 'active' : ''
-                        }`}
-                      >                      
-                        Loan
-                      </Link>
-                      <Link
-                        to="/ac"
-                        className={`category-item ${
-                          location.pathname === '/ac' ? 'active' : ''
-                        }`}
-                      >
-                        Account book
-                      </Link>
+            {routes.map((route, index) => {
+              const isCategoryActive = location.pathname === '/home' || location.pathname === '/ac';
+              
+              return (
+                <div key={index}>
+                  {route.icon === faList ? (
+                    <div 
+                      className={`category-icon ${isCategoryActive ? 'active' : ''}`} 
+                      onClick={toggleCategoryMenu}
+                    >
+                      <div className="icon-container">
+                        <FontAwesomeIcon
+                          className="img"
+                          icon={route.icon}
+                        />
+                      </div>
+                      
+                      <div className={`category-menu ${isCategoryOpen ? 'category-menu-active' : ''}`}>
+                        <Link
+                          to="/home"
+                          className={`category-item ${
+                            location.pathname === '/home' ? 'active' : ''
+                          }`}
+                        >                      
+                          Loan Book
+                        </Link>
+                        <Link
+                          to="/ac"
+                          className={`category-item ${
+                            location.pathname === '/ac' ? 'active' : ''
+                          }`}
+                        >
+                          Account Book
+                        </Link>
+                      </div>
                     </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link to={route.path} key={index} className={`icon ${location.pathname === route.path ? 'active' : ''}`}>
-            <div className="icon-container">
-            <FontAwesomeIcon className='img' icon={route.icon} 
-            style={{color: "#080808",}}
-            />
-              {/* <img src={require(`../../assets/images/${route.icon}.png`)} alt={route.icon.charAt(0).toUpperCase() + route.icon.slice(1)} /> */}
-            </div>
-          </Link>
-                )}
-              </div>
-            ))}
+                  ) : (
+                    <Link 
+                      to={route.path} 
+                      key={index} 
+                      className={`icon ${location.pathname === route.path ? 'active' : ''}`}
+                    >
+                      <div className="icon-container">
+                        <FontAwesomeIcon 
+                          className="img" 
+                          icon={route.icon} 
+                        />
+                      </div>
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
           </div>
         );
       };

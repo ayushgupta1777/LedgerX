@@ -1,0 +1,232 @@
+/*
+ * LedgerX Global Desktop Responsive Stylesheet
+ * Handles wide-screen layout for all major pages at 768px, 1024px, and 1280px+
+ * This file is imported once in App.js / index.js and applies globally.
+ */
+
+/* ============================================================
+   TABLET (768px - 1023px) — Wider single column
+   ============================================================ */
+@media (min-width: 768px) {
+
+  /* All page wrappers — center in a readable column */
+  .byaj-home-container,
+  .loan-profile,
+  .ac-container,
+  .customer_form_container,
+  .dashboard-skeleton,
+  .transactions-container-transaction_page_loading,
+  .home-container_home_d-loading,
+  .chat-container_CDP1_loading {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Auth pages */
+  .auth-container,
+  .combined-auth-card {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* Floating bottom nav — constrained to content width */
+  .bottom-nav-dock {
+    max-width: 700px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================================
+   DESKTOP (1024px+) — True desktop experience
+   ============================================================ */
+@media (min-width: 1024px) {
+
+  /* Body gets a subtle background so the content column stands out */
+  body {
+    background: var(--color-bg-gradient);
+  }
+
+  /* === CONTENT COLUMNS === */
+  .byaj-home-container {
+    max-width: 760px;
+    margin: 0 auto;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    min-height: 100vh;
+  }
+
+  .loan-profile {
+    max-width: 900px;
+    margin: 0 auto;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .customer_form_container {
+    max-width: 640px;
+    margin: 0 auto;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    min-height: 100vh;
+  }
+
+  /* Skeleton loaders */
+  .dashboard-skeleton,
+  .home-container_home_d-loading,
+  .transactions-container-transaction_page_loading {
+    max-width: 760px;
+    margin: 0 auto;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+  }
+
+  /* === BOTTOM NAV === */
+  .bottom-nav-dock {
+    max-width: 760px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    bottom: 16px;
+    border-radius: var(--radius-full);
+  }
+
+  /* === HOME PAGE HEADER === */
+  .byaj-header {
+    border-radius: 0;
+  }
+
+  /* === ACTION GRIDS — give more breathing room === */
+  .byaj-action-grid,
+  .byaj-premium-grid {
+    grid-template-columns: repeat(5, 1fr);
+    padding: 20px 24px;
+  }
+
+  /* === FEATURE ROW — 4 columns on desktop === */
+  .byaj-feature-row {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 20px;
+  }
+
+  /* === BALANCE CARD === */
+  .byaj-balance-card {
+    margin: 16px 20px;
+    padding: 24px;
+  }
+
+  /* === LOAN PROFILE SECTIONS === */
+  .loan-dashboard-container {
+    padding: 24px 40px;
+    padding-top: 110px;
+    padding-bottom: 48px;
+  }
+
+  /* Loan metric cards — 2×2 at this size */
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .dashboard-card {
+    aspect-ratio: unset;
+    min-height: 160px;
+    padding: 28px;
+  }
+
+  /* Interest progress ring */
+  .progress-container {
+    margin: 0 40px 24px;
+    border-radius: var(--radius-lg);
+    padding: 32px;
+  }
+
+  /* Auth card */
+  .combined-auth-card {
+    max-width: 520px;
+    margin: 60px auto;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Modal bottom sheets — centered */
+  .topup-container {
+    max-width: 540px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  /* Dropdown menus */
+  .dropdown-container {
+    bottom: 24px;
+    right: calc(50% - 430px);
+  }
+}
+
+/* ============================================================
+   ULTRA-WIDE (1280px+) — Side by side where possible
+   ============================================================ */
+@media (min-width: 1280px) {
+
+  .byaj-home-container {
+    max-width: 860px;
+  }
+
+  .loan-profile {
+    max-width: 1100px;
+  }
+
+  /* 4-column metric grid at this width */
+  .dashboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    max-width: 1060px;
+  }
+
+  .dashboard-card {
+    min-height: 140px;
+    padding: 24px 20px;
+  }
+
+  .card-title { font-size: 14px; }
+  .card-amount { font-size: 26px; }
+
+  /* Full-width bottom nav aligned to wider container */
+  .bottom-nav-dock {
+    max-width: 1060px;
+  }
+
+  .progress-container {
+    max-width: 1020px;
+    width: calc(100% - 80px);
+    margin: 0 auto 24px;
+  }
+
+  .dropdown-container {
+    right: calc(50% - 530px);
+  }
+}
+
+/* ============================================================
+   PRINT / 2K+ SCREENS (1536px+) — Cap content width
+   ============================================================ */
+@media (min-width: 1536px) {
+  .byaj-home-container,
+  .loan-profile,
+  .customer_form_container {
+    max-width: 1200px;
+  }
+
+  .dashboard-grid {
+    max-width: 1160px;
+  }
+
+  .bottom-nav-dock {
+    max-width: 1160px;
+  }
+}
