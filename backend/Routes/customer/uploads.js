@@ -2,6 +2,7 @@ const express = require("express");
 const cloudinary = require("../dbs/cloudinaryConfig");
 const upload = require("../dbs/multerConfig");
 const Customer = require("../../models/Customer");
+const Loan = require("../../models/loans/loanSchema");
 const streamifier = require("streamifier");
 
 const router = express.Router();
@@ -50,6 +51,13 @@ router.post("/doc/upload/:customerID", upload.fields([{ name: "images" }, { name
       const updatedCustomer = await Customer.findOneAndUpdate(
           { customerID },
           { $push: { images: newImages, documents: newDocuments } },
+          { new: true }
+      );
+
+      // ✅ Update Loan Record (if it exists)
+      const updatedLoan = await Loan.findOneAndUpdate(
+          { customerID },
+          { $push: { "loanDetails.attachments": { $each: newDocuments.map(d => d.url) } } },
           { new: true }
       );
 

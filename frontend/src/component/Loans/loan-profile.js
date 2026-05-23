@@ -26,6 +26,12 @@ const LoanProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHindi, setIsHindi] = useState(false);
   const [showAIModal, setShowAIModal] = useState(false);
+  const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
+  const [phoneVerifiedState, setPhoneVerifiedState] = useState(localStorage.getItem(`phone_verified_${customerID}`) === 'true');
+  const [verificationDetails, setVerificationDetails] = useState(localStorage.getItem(`phone_verification_details_${customerID}`) || '');
+  const [verificationDate, setVerificationDate] = useState(localStorage.getItem(`phone_verified_date_${customerID}`) || '');
+  const [selectedDoc, setSelectedDoc] = useState(null);
+  const [docUploading, setDocUploading] = useState(false);
 
   const [amount1, setAmount1] = useState('');
   const [method, setMethod] = useState('Cash');
@@ -195,7 +201,7 @@ const LoanProfile = () => {
 
 
   // --- REACT QUERY REFACTOR ---
-  const { data: loanDetailsData, isLoading: isLoadingLoan, error: errorLoan } = useQuery({
+  const { data: loanDetailsData, isLoading: isLoadingLoan, error: errorLoan, refetch: refetchLoanDetails } = useQuery({
     queryKey: ['loanProfile', customerID],
     queryFn: async () => {
       const token = localStorage.getItem('token');
@@ -208,7 +214,7 @@ const LoanProfile = () => {
     refetchOnWindowFocus: true,
   });
 
-  const { data: profileData, isLoading: isLoadingProfile, error: errorProfile } = useQuery({
+  const { data: profileData, isLoading: isLoadingProfile, error: errorProfile, refetch: refetchProfile } = useQuery({
     queryKey: ['customerProfile', customerID],
     queryFn: async () => {
       const token = localStorage.getItem('token');
@@ -474,11 +480,73 @@ const LoanProfile = () => {
       });
 
       setImage(response.data.imageUrl); // Store the uploaded image URL
-      console.log(response)
+      console.log(response);
+      refetchLoanDetails();
+      refetchProfile();
     } catch (error) {
       console.error("Error uploading image", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDocChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedDoc(file);
+    }
+  };
+
+  const uploadDocument = async () => {
+    if (!selectedDoc) {
+      showMessage('error', 'Please select a document file to upload.');
+      return;
+    }
+    setDocUploading(true);
+    const formData = new FormData();
+    formData.append("documents", selectedDoc);
+
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/doc/upload/${customerID}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      showMessage('success', 'Identity Document uploaded successfully!');
+      setSelectedDoc(null);
+      
+      const docInput = document.getElementById('docFileInput');
+      if (docInput) docInput.value = '';
+      
+      refetchLoanDetails();
+      refetchProfile();
+    } catch (error) {
+      console.error("Error uploading document:", error);
+      showMessage('error', 'Document upload failed. Please try again.');
+    } finally {
+      setDocUploading(false);
+    }
+  };
+
+  const savePhoneVerificationDetails = () => {
+    localStorage.setItem(`phone_verification_details_${customerID}`, verificationDetails);
+    localStorage.setItem(`phone_verified_date_${customerID}`, verificationDate);
+    showMessage('success', 'Verification details saved successfully.');
+  };
+
+  const handlePhoneToggle = (checked) => {
+    localStorage.setItem(`phone_verified_${customerID}`, checked ? 'true' : 'false');
+    setPhoneVerifiedState(checked);
+    if (checked && !verificationDate) {
+      const today = new Date().toISOString().split('T')[0];
+      setVerificationDate(today);
+      localStorage.setItem(`phone_verified_date_${customerID}`, today);
+    }
+    showMessage('success', `Phone verification status updated to ${checked ? 'Verified' : 'Unverified'}`);
+  };
+
+  const handleCloseVerificationModal = (e) => {
+    if (e.target.classList.contains("modal-overlay")) {
+      handleSmoothModalClose(setIsVerificationModalOpen);
     }
   };
 
@@ -955,6 +1023,15 @@ const LoanProfile = () => {
           >
             <span className="icon">💰</span> PAY INTEREST
           </div>
+          <div
+            className="dropdown-item"
+            onClick={() => {
+              setIsVerificationModalOpen(true);
+              setIsOpen(false);
+            }}
+          >
+            <span className="icon">🛡️</span> Security Verification
+          </div>
 
         </div>
       </div>
@@ -1352,6 +1429,156 @@ const LoanProfile = () => {
 </div> */}
       {/* </div> */}
       
+      {isVerificationModalOpen && (
+          <div className="modal-overlay" onClick={handleCloseVerificationModal}>
+            <div className="topup-container verification-modal-container" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-drag-handle"></div>
+
+              <button
+                className="close-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSmoothModalClose(setIsVerificationModalOpen);
+                }}
+              >
+                ✖
+              </button>
+
+              <div className="modal-header">
+                <h2 className="modal-title">🛡️ Security Verification Auditor</h2>
+                <p className="modal-subtitle">Configure compliance checklists and manual verification logs</p>
+              </div>
+
+              <div className="modal-body" style={{ overflowY: 'auto', paddingBottom: '20px' }}>
+                
+                {/* 1. Phone Verification Section */}
+                <div className="verification-section">
+                  <h3 className="section-title">📞 Manual Phone Audit</h3>
+                  <div className="verification-card-field" style={{ display: 'flex', alignItems: 'center', background: 'rgba(255,255,255,0.05)', padding: '12px', borderRadius: '12px', marginBottom: '12px' }}>
+                    <label className="toggle-label-container" style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', userSelect: 'none', width: '100%' }}>
+                      <input
+                        type="checkbox"
+                        checked={phoneVerifiedState}
+                        onChange={(e) => handlePhoneToggle(e.target.checked)}
+                        className="toggle-checkbox"
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)' }}
+                      />
+                      <span className="toggle-text" style={{ fontSize: '14px', fontWeight: '600' }}>
+                        {phoneVerifiedState ? "✅ Phone Number Manually Verified" : "❌ Mark Phone Number as Verified"}
+                      </span>
+                    </label>
+                  </div>
+
+                  <div className="form-group" style={{ marginTop: '12px' }}>
+                    <label className="form-label" style={{ fontSize: '13px', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Agreement / ID Number (e.g. Aadhaar/PAN)</label>
+                    <input
+                      type="text"
+                      value={verificationDetails}
+                      onChange={(e) => setVerificationDetails(e.target.value)}
+                      className="form-input"
+                      placeholder="e.g. Aadhaar 1234-5678-9012"
+                      style={{ width: '100%', boxSizing: 'border-box' }}
+                    />
+                  </div>
+
+                  <div className="form-group" style={{ marginTop: '12px' }}>
+                    <label className="form-label" style={{ fontSize: '13px', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Verification Agreement Date</label>
+                    <input
+                      type="date"
+                      value={verificationDate}
+                      onChange={(e) => setVerificationDate(e.target.value)}
+                      className="form-input"
+                      style={{ width: '100%', boxSizing: 'border-box' }}
+                    />
+                  </div>
+
+                  <button
+                    onClick={savePhoneVerificationDetails}
+                    className="btn-primary"
+                    style={{ marginTop: '12px', padding: '10px 16px', fontSize: '14px', width: 'auto' }}
+                  >
+                    Save Verification Details
+                  </button>
+                </div>
+
+                <div className="divider-line" style={{ margin: '20px 0', borderBottom: '1px solid var(--color-border)' }}></div>
+
+                {/* 2. Document Upload Section */}
+                <div className="verification-section">
+                  <h3 className="section-title">📂 Identity Documents</h3>
+                  <p className="section-desc" style={{ fontSize: '13px', marginBottom: '12px' }}>
+                    Status: {loanDetails?.loanDetails?.attachments?.length > 0 ? (
+                      <span style={{ color: '#10b981', fontWeight: 'bold' }}>✅ Uploaded ({loanDetails.loanDetails.attachments.length} files)</span>
+                    ) : (
+                      <span style={{ color: '#ef4444', fontWeight: 'bold' }}>❌ Missing</span>
+                    )}
+                  </p>
+                  
+                  {loanDetails?.loanDetails?.attachments?.length > 0 && (
+                    <div className="uploaded-docs-list" style={{ maxHeight: '100px', overflowY: 'auto', marginBottom: '12px', background: 'rgba(255,255,255,0.03)', padding: '10px', borderRadius: '12px', border: '1px solid var(--color-border)' }}>
+                      {loanDetails.loanDetails.attachments.map((doc, idx) => (
+                        <div key={idx} style={{ fontSize: '12px', display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '280px' }}>
+                            📄 Document #{idx + 1}: <a href={doc} target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6', textDecoration: 'underline' }}>View File</a>
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="file-upload-group" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <input
+                      id="docFileInput"
+                      type="file"
+                      onChange={handleDocChange}
+                      className="form-input"
+                      style={{ padding: '8px', flex: 1 }}
+                    />
+                    <button
+                      onClick={uploadDocument}
+                      className="btn-primary"
+                      disabled={docUploading || !selectedDoc}
+                      style={{ width: 'auto', padding: '12px 18px', whiteSpace: 'nowrap' }}
+                    >
+                      {docUploading ? "Uploading..." : "Upload"}
+                    </button>
+                  </div>
+                </div>
+
+                <div className="divider-line" style={{ margin: '20px 0', borderBottom: '1px solid var(--color-border)' }}></div>
+
+                {/* 3. Shortcuts for Photo & Signature */}
+                <div className="verification-section">
+                  <h3 className="section-title">👤 Photo & ✍️ Signature Shortcuts</h3>
+                  <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
+                    <button
+                      onClick={() => {
+                        setIsVerificationModalOpen(false);
+                        document.getElementById('fileInput').click();
+                      }}
+                      className="receipt-btn"
+                      style={{ flex: 1, padding: '12px', height: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
+                    >
+                      📷 {profileImage ? "Update Photo" : "Upload Photo"}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsVerificationModalOpen(false);
+                        handleAddSignature();
+                      }}
+                      className="receipt-btn"
+                      style={{ flex: 1, padding: '12px', height: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
+                    >
+                      ✍️ Draw Signature
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        )}
+
       {showAIModal && (
         <CreditIntelligenceUI
           customerID={customerID}

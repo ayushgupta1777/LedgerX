@@ -2311,4 +2311,78 @@ cursor: pointer;
     max-width: 1020px;
     width: calc(100% - 80px);
   }
+}
+
+/* ==========================================
+   Security Verification Modal Premium Styling
+   ========================================== */
+.verification-modal-container {
+  max-width: 550px !important;
+  max-height: 90vh !important;
+  border-radius: 24px 24px 0 0 !important;
+  box-shadow: 0 -15px 50px rgba(0, 0, 0, 0.3) !important;
+}
+
+.verification-section {
+  text-align: left;
+  padding: 8px 0;
+}
+
+.verification-section .section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.verification-section .section-desc {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.verification-card-field {
+  transition: all var(--transition-normal);
+  border: 1px solid var(--color-border-glass);
+}
+
+.verification-card-field:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--color-primary);
+}
+
+.toggle-checkbox {
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.toggle-checkbox:hover {
+  transform: scale(1.1);
+}
+
+.divider-line {
+  border-bottom: 1px solid var(--color-border-glass) !important;
+}
+
+.uploaded-docs-list {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) rgba(0, 0, 0, 0.05);
+}
+
+.uploaded-docs-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.uploaded-docs-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.uploaded-docs-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.uploaded-docs-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
